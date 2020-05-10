@@ -28,7 +28,7 @@ public class BasketResource {
     private final BasketService basketService;
 
     /**
-     * Spring DI constructor.
+     * Spring DI constructor for BasketService.
      *
      * @param basketService - service for interaction with baskets table
      */
@@ -37,9 +37,9 @@ public class BasketResource {
     }
 
     /**
-     * Table getter.
+     * Baskets table getter.
      *
-     * @return List of basket objects
+     * @return List of Basket objects
      */
     @GetMapping
     public ResponseEntity<List<Basket>> getBaskets() {
@@ -50,8 +50,8 @@ public class BasketResource {
     /**
      * Basket record getter.
      *
-     * @param id Id of desired record
-     * @return Record founded by id
+     * @param id ID of desired Basket record
+     * @return Basket record founded by ID
      */
     @GetMapping("/{id}")
     public ResponseEntity<Basket> getBasketById(@PathVariable final String id) {
@@ -86,13 +86,13 @@ public class BasketResource {
     /**
      * Basket record deleting method.
      *
-     * @param id Id of deleting record
+     * @param id ID of deleting Basket record
      * @return Status of deleting operation
      */
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteBasket(@PathVariable final String id) {
         basketService.deleteBasket(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
 }

@@ -1,6 +1,8 @@
 package com.alexd.AlexPharmacy.exception;
 
 import com.alexd.AlexPharmacy.exception.basket.BasketNotFoundException;
+import com.alexd.AlexPharmacy.exception.manufacturer.ManufacturerExistException;
+import com.alexd.AlexPharmacy.exception.manufacturer.ManufacturerNotFoundException;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -26,17 +28,41 @@ import java.util.stream.Collectors;
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     /**
-     * Handler for mismatch of argument types.
+     * Handler for records not founded by ID.
      *
-     * @param ex      - caught MethodArgumentTypeMismatchException
-     * @param request - the current request
+     * @param ex      Caught ...NotFoundException
+     * @param request The current request
+     * @return ResponseEntity with caught error
      */
-    @ExceptionHandler({BasketNotFoundException.class})
+    @ExceptionHandler({BasketNotFoundException.class, ManufacturerNotFoundException.class})
     public ResponseEntity<Object> handleNotFoundException(final @NotNull Exception ex, final WebRequest request) {
         List<String> errors;
 
         if (ex instanceof BasketNotFoundException) {
             errors = Collections.singletonList("Не знайдено кошик за номером №" + ex.getLocalizedMessage());
+        } else if (ex instanceof ManufacturerNotFoundException) {
+            errors = Collections.singletonList("Не знайдено виробника за номером №" + ex.getLocalizedMessage());
+        } else {
+            errors = Collections.singletonList("Помилки додаються");
+        }
+
+        var apiError = new ApiError(HttpStatus.NOT_FOUND, ex.getLocalizedMessage(), errors);
+        return new ResponseEntity<>(apiError, new HttpHeaders(), apiError.getStatus());
+    }
+
+    /**
+     * Handler for adding of not unique records.
+     *
+     * @param ex      Caught ...ExistException
+     * @param request The current request
+     * @return ResponseEntity with caught error
+     */
+    @ExceptionHandler({ManufacturerExistException.class})
+    public ResponseEntity<Object> handleExistException(final @NotNull Exception ex, final WebRequest request) {
+        List<String> errors;
+
+        if (ex instanceof ManufacturerExistException) {
+            errors = Collections.singletonList("Виробник з назвою " + ex.getLocalizedMessage() + "уже присутній у базі");
         } else {
             errors = Collections.singletonList("Помилки додаються");
         }

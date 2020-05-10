@@ -37,10 +37,10 @@ public class BasketService {
     }
 
     /**
-     * Service method, which finds specified by id basket record.
+     * Service method, which finds Basket specified by id basket record.
      *
-     * @param id Id of desired record
-     * @return Record founded by id
+     * @param id ID of desired record
+     * @return Basket founded by ID
      */
     public Basket getBasketById(final String id) {
         try {
@@ -73,7 +73,7 @@ public class BasketService {
     }
 
     /**
-     * Service method, which deletes record by ID.
+     * Service method, which deletes Basket record by ID.
      *
      * @param id Deleting basket ID
      */
