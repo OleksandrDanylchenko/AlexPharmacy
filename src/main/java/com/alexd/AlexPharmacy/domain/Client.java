@@ -27,21 +27,21 @@ public class Client {
     /**
      * First name of clients.
      */
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Ім'я клієнту не може бути відсутнім")
+    @NotEmpty(message = "Ім'я клієнту не може бути пустим")
     private String firstName;
 
     /**
      * Last name of clients.
      */
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Прізвище клієнту не може бути відсутнім")
+    @NotEmpty(message = "Прізвище клієнту не може бути пустим")
     private String lastName;
 
     /**
      * Birthday of clients.
      */
-    @NotNull
+    @NotNull(message = "День народження клієнту не може бути відсутнім")
     private LocalDate birthday;
 
 }

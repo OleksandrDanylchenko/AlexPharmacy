@@ -28,8 +28,8 @@ public class City {
      * Name of city.
      */
     @Column(unique = true)
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Назва міста не може бути відсутньою")
+    @NotEmpty(message = "Назва міста не може бути пустою")
     private String name;
 
 }

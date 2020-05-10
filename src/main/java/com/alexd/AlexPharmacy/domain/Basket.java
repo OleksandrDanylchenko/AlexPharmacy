@@ -46,7 +46,7 @@ public class Basket {
     /**
      * Date and time of buying.
      */
-    @NotNull
+    @NotNull(message = "Час покупки не може бути відсутнім")
     private LocalDateTime buyingTime;
 
 }

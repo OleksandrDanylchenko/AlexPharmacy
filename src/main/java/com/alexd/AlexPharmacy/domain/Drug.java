@@ -32,8 +32,8 @@ public class Drug {
     /**
      * Name of drug.
      */
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Назва препарату не може бути відсутньою")
+    @NotEmpty(message = "Назва препарату не може бути пустою")
     private String name;
 
     /**
@@ -47,8 +47,8 @@ public class Drug {
      * Usage instruction for drug.
      */
     @Column(unique = true)
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Інструкція не може бути відсутньою")
+    @NotEmpty(message = "Інструкція не може бути пустою")
     private String instruction;
 
     /**
@@ -56,10 +56,8 @@ public class Drug {
      */
     @ManyToMany
     @JoinTable(name = "disease_drug",
-            joinColumns = @JoinColumn
-                    (name = "disease_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn
-                    (name = "drug_id", referencedColumnName = "id"))
+            joinColumns = @JoinColumn(name = "disease_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "drug_id", referencedColumnName = "id"))
     private List<Disease> diseases;
 
 }

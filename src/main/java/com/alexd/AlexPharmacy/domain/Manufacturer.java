@@ -30,8 +30,8 @@ public class Manufacturer {
      * Trademark of manufacturer.
      */
     @Column(unique = true)
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Торгова марка не може бути відсутньою")
+    @NotEmpty(message = "Торгова марка не може бути пустою")
     private String trademark;
 
     /**

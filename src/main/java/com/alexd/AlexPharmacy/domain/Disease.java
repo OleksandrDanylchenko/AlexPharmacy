@@ -30,8 +30,8 @@ public class Disease {
      * Name of disease.
      */
     @Column(unique = true)
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Назва хвороби не може бути відсутньою")
+    @NotEmpty(message = "Назва хвороби не може бути пустою")
     private String name;
 
     /**
