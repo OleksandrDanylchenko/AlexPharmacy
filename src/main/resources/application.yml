@@ -1,0 +1,14 @@
+server:
+  port: 9000
+
+spring:
+  datasource:
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost\\MSSQLSERVER:1433;database=PharmacyLab
+    username: PharmacyDataAdmin
+    password: pharmacylab
+    platform: mssql
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
