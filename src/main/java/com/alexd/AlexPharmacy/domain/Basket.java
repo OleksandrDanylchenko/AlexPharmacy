@@ -47,6 +47,6 @@ public class Basket {
      * Date and time of buying.
      */
     @NotNull
-    private LocalDateTime localDateTime;
+    private LocalDateTime buyingTime;
 
 }
