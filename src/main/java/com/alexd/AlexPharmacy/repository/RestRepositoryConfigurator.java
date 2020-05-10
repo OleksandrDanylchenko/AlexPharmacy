@@ -1,5 +1,6 @@
 package com.alexd.AlexPharmacy.repository;
 
+import com.alexd.AlexPharmacy.domain.City;
 import com.alexd.AlexPharmacy.domain.Client;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -20,6 +21,7 @@ public class RestRepositoryConfigurator implements RepositoryRestConfigurer {
     public void configureRepositoryRestConfiguration(
             final RepositoryRestConfiguration config) {
         config.exposeIdsFor(Client.class);
+        config.exposeIdsFor(City.class);
     }
 
 }
