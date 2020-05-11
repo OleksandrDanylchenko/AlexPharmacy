@@ -21,8 +21,7 @@ public class DataService {
      * @param repository Repository with all needed records
      * @return List of specified repository records presented in table
      */
-    public List<? extends PharmacyDomain> getAllRecords(
-            @NotNull final JpaRepository<? extends PharmacyDomain, Long> repository) {
+    public <T extends PharmacyDomain> List<T> getAllRecords(@NotNull final JpaRepository<T, Long> repository) {
         return repository.findAll();
     }
 
@@ -33,8 +32,8 @@ public class DataService {
      * @param id         ID of desired record
      * @return Record founded by ID
      */
-    public PharmacyDomain getRecordById(@NotNull final JpaRepository<? extends PharmacyDomain, Long> repository,
-                                        final String id) {
+    public <T extends PharmacyDomain> T getRecordById(@NotNull final JpaRepository<T, Long> repository,
+                                                      final String id) {
         try {
             var longId = NumberUtils.createLong(id);
             var foundedRecord = repository.findById(longId);
@@ -50,7 +49,8 @@ public class DataService {
      * @param repository Adding repository
      * @param record     Saving record
      */
-    public void saveRecord(@NotNull final JpaRepository repository, final PharmacyDomain record) {
+    public <T extends PharmacyDomain> void saveRecord(@NotNull final JpaRepository<T, Long> repository,
+                                                      final T record) {
         try {
             repository.save(record);
         } catch (IllegalArgumentException | DataIntegrityViolationException ignored) {
@@ -64,7 +64,8 @@ public class DataService {
      * @param repository Updating repository
      * @param updRecord  Updating record
      */
-    public void updateRecord(@NotNull final JpaRepository repository, @NotNull final PharmacyDomain updRecord) {
+    public <T extends PharmacyDomain> void updateRecord(@NotNull final JpaRepository<T, Long> repository,
+                                                        @NotNull final T updRecord) {
         var stringId = String.valueOf(updRecord.getId());
         var recordFromDB = getRecordById(repository, stringId);
         BeanUtils.copyProperties(updRecord, recordFromDB, "id");
@@ -77,7 +78,7 @@ public class DataService {
      * @param repository Deleting repository
      * @param id         ID of deleting record
      */
-    public void deleteRecord(final JpaRepository repository, final String id) {
+    public <T extends PharmacyDomain> void deleteRecord(final JpaRepository<T, Long> repository, final String id) {
         var recordFromDB = getRecordById(repository, id);
         repository.delete(recordFromDB);
     }
