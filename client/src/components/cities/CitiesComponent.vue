@@ -1,12 +1,5 @@
 <template>
   <div>
-    <b-row>
-      <b-col>
-        <b-button pill variant="outline-danger" @click="openCitiesModal(-1)">
-          <i class="fas fa-plus-circle"></i>&nbsp;Додати нове авто
-        </b-button>
-      </b-col>
-    </b-row>
     <div class="mt-4">
       <MessagesErrorsComponent
         :messages="messages"
@@ -16,44 +9,58 @@
       />
       <b-row>
         <b-col>
-          <h1 class="mb-3 display-4">Список міст-філіалів:</h1>
-          <b-table
-            id="citiesTable"
-            hover
-            :items="cities"
-            :fields="fields"
-            :busy.sync="isBusy"
-            primary-key="id"
+          <b-row
+            class="d-flex justify-content-between align-items-center mb-3 fadeInLeft"
+            v-wow
           >
-            <template v-slot:table-busy>
-              <div class="text-center text-danger mt-2">
-                <b-spinner
-                  type="grow"
-                  class="align-middle"
-                  style="width: 3rem; height: 3rem;"
-                />
-                <strong>&nbsp;Завантаження таблиці...</strong>
-              </div>
-            </template>
-            <template v-slot:cell(editModal)="data">
-              <b-button
-                pill
-                variant="outline-primary"
-                @click="openCitiesModal(data.item.id)"
-              >
-                <i class="fa fa-edit"></i>
-              </b-button>
-            </template>
-            <template v-slot:cell(deleteModal)="data">
-              <b-button
-                pill
-                variant="outline-danger"
-                @click="openDeleteModal(data.item.id)"
-              >
-                <i class="fa fa-trash"></i>
-              </b-button>
-            </template>
-          </b-table>
+            <h1 class="display-4 text-primary">Список міст-філіалів:</h1>
+            <b-button
+              pill
+              variant="outline-success"
+              @click="openCitiesModal(-1)"
+            >
+              <i class="fas fa-plus-circle"></i>&nbsp;Додати нове місто
+            </b-button>
+          </b-row>
+          <div class="fadeInLeft" v-wow>
+            <b-table
+              id="citiesTable"
+              hover
+              :items="cities"
+              :fields="fields"
+              :busy.sync="isBusy"
+              primary-key="id"
+            >
+              <template v-slot:table-busy>
+                <div class="text-center text-danger mt-2">
+                  <b-spinner
+                    type="grow"
+                    class="align-middle"
+                    style="width: 3rem; height: 3rem;"
+                  />
+                  <strong>&nbsp;Завантаження таблиці...</strong>
+                </div>
+              </template>
+              <template v-slot:cell(editModal)="data">
+                <b-button
+                  pill
+                  variant="outline-primary"
+                  @click="openCitiesModal(data.item.id)"
+                >
+                  <i class="fa fa-edit"></i>
+                </b-button>
+              </template>
+              <template v-slot:cell(deleteModal)="data">
+                <b-button
+                  pill
+                  variant="outline-danger"
+                  @click="openDeleteModal(data.item.id)"
+                >
+                  <i class="fa fa-trash"></i>
+                </b-button>
+              </template>
+            </b-table>
+          </div>
         </b-col>
       </b-row>
     </div>
@@ -97,6 +104,20 @@ export default {
           key: "name",
           label: "Назва міста",
           sortable: true,
+          thClass: "text-center text-primary",
+          tdClass: "text-center text-primary",
+          thStyle: "vertical-align: middle;"
+        },
+        {
+          key: "editModal",
+          label: "Змінити",
+          thClass: "text-center",
+          tdClass: "text-center",
+          thStyle: "vertical-align: middle;"
+        },
+        {
+          key: "deleteModal",
+          label: "Видалити",
           thClass: "text-center",
           tdClass: "text-center",
           thStyle: "vertical-align: middle;"
@@ -117,7 +138,7 @@ export default {
       DataService.retrieveAllRecords(this.resource)
         .then(response => {
           this.$log.debug("Cities loaded: ", response.data);
-          this.cities = response.data;
+          this.cities = response.data._embedded.cities;
           this.isBusy = false;
         })
         .catch(error => {
@@ -192,4 +213,5 @@ export default {
 
 <style lang="css">
 @import "../../styles/gradient.css";
+@import "../../styles/animate.css";
 </style>
