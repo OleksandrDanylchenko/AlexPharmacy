@@ -1,5 +1,6 @@
 package com.alexd.AlexPharmacy.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -54,6 +55,8 @@ public class Drug implements PharmacyDomain {
     /**
      * List of diseases treated with this drug.
      */
+
+    @JsonIgnoreProperties("drugs")
     @ManyToMany
     @JoinTable(name = "disease_drug",
             joinColumns = @JoinColumn(name = "disease_id", referencedColumnName = "id"),

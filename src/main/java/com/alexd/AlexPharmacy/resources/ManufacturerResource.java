@@ -64,8 +64,8 @@ public class ManufacturerResource {
      */
     @GetMapping("/{id}")
     public ResponseEntity<? extends PharmacyDomain> getManufacturerById(@PathVariable final String id) {
-        var foundedManufacturer = dataService.getRecordById(manufacturerRepository, id);
-        return new ResponseEntity<>(foundedManufacturer, HttpStatus.OK);
+        var foundManufacturer = dataService.getRecordById(manufacturerRepository, id);
+        return new ResponseEntity<>(foundManufacturer, HttpStatus.OK);
     }
 
     /**

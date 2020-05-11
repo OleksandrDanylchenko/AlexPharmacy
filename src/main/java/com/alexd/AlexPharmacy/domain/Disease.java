@@ -1,5 +1,6 @@
 package com.alexd.AlexPharmacy.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -37,6 +38,7 @@ public class Disease implements PharmacyDomain {
     /**
      * List of drugs, which can cure specified disease.
      */
+    @JsonIgnoreProperties("diseases")
     @ManyToMany(mappedBy = "diseases")
     private List<Drug> drugs;
 
