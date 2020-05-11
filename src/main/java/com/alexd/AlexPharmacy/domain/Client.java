@@ -2,6 +2,7 @@ package com.alexd.AlexPharmacy.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
 @Entity
@@ -42,6 +44,8 @@ public class Client implements PharmacyDomain {
      * Birthday of clients.
      */
     @NotNull(message = "День народження клієнту не може бути відсутнім")
+    @Past(message = "День народження не може бути після теперішньої дати")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthday;
 
 }

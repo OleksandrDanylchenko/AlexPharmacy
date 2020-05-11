@@ -1,7 +1,9 @@
 package com.alexd.AlexPharmacy.resources;
 
 import com.alexd.AlexPharmacy.domain.Basket;
-import com.alexd.AlexPharmacy.service.BasketService;
+import com.alexd.AlexPharmacy.domain.PharmacyDomain;
+import com.alexd.AlexPharmacy.repository.BasketRepository;
+import com.alexd.AlexPharmacy.service.DataService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,17 +25,25 @@ import java.util.List;
 public class BasketResource {
 
     /**
-     * Baskets table interaction service.
+     * Baskets table repository.
      */
-    private final BasketService basketService;
+    private final BasketRepository basketRepository;
 
     /**
-     * Spring DI constructor for BasketService.
-     *
-     * @param basketService - service for interaction with baskets table
+     * DB interaction service.
      */
-    public BasketResource(final BasketService basketService) {
-        this.basketService = basketService;
+    private final DataService dataService;
+
+    /**
+     * /**
+     * Spring DI constructor for BasketRepository and DataService.
+     *
+     * @param basketRepository Baskets table repository.
+     * @param dataService      DB interaction service
+     */
+    public BasketResource(final BasketRepository basketRepository, final DataService dataService) {
+        this.basketRepository = basketRepository;
+        this.dataService = dataService;
     }
 
     /**
@@ -42,8 +52,8 @@ public class BasketResource {
      * @return List of Basket objects
      */
     @GetMapping
-    public ResponseEntity<List<Basket>> getBaskets() {
-        var baskets = basketService.getAllBaskets();
+    public ResponseEntity<List<? extends PharmacyDomain>> getBaskets() {
+        var baskets = dataService.getAllRecords(basketRepository);
         return new ResponseEntity<>(baskets, HttpStatus.OK);
     }
 
@@ -54,9 +64,9 @@ public class BasketResource {
      * @return Basket record founded by ID
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Basket> getBasketById(@PathVariable final String id) {
-        var foundedBasket = basketService.getBasketById(id);
-        return new ResponseEntity<>(foundedBasket, HttpStatus.OK);
+    public ResponseEntity<? extends PharmacyDomain> getBasketById(@PathVariable final String id) {
+        var foundBasket = dataService.getRecordById(basketRepository, id);
+        return new ResponseEntity<>(foundBasket, HttpStatus.OK);
     }
 
     /**
@@ -67,7 +77,7 @@ public class BasketResource {
      */
     @PostMapping
     public ResponseEntity<Object> addBasket(@Valid @RequestBody final Basket newBasket) {
-        basketService.addNewBasket(newBasket);
+        dataService.saveRecord(basketRepository, newBasket);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -79,7 +89,7 @@ public class BasketResource {
      */
     @PutMapping
     public ResponseEntity<Object> updateBasket(@Valid @RequestBody final Basket updBasket) {
-        basketService.updateBasket(updBasket);
+        dataService.updateRecord(basketRepository, updBasket);
         return new ResponseEntity<>(updBasket, HttpStatus.OK);
     }
 
@@ -91,7 +101,7 @@ public class BasketResource {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteBasket(@PathVariable final String id) {
-        basketService.deleteBasket(id);
+        dataService.deleteRecord(basketRepository, id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

@@ -25,7 +25,7 @@ import java.util.List;
 public class ManufacturerResource {
 
     /**
-     * Manufacturer table repository.
+     * Manufacturers table repository.
      */
     private final ManufacturerRepository manufacturerRepository;
 
@@ -37,7 +37,7 @@ public class ManufacturerResource {
     /**
      * Spring DI constructor for ManufacturerRepository and DataService.
      *
-     * @param manufacturerRepository Manufacturer table repository
+     * @param manufacturerRepository Manufacturers table repository
      * @param dataService            DB interaction service
      */
     public ManufacturerResource(final ManufacturerRepository manufacturerRepository, final DataService dataService) {

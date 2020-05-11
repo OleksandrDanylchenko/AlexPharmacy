@@ -36,8 +36,8 @@ public class DataService {
                                                       final String id) {
         try {
             var longId = NumberUtils.createLong(id);
-            var foundedRecord = repository.findById(longId);
-            return foundedRecord.orElseThrow(IllegalArgumentException::new);
+            var foundRecord = repository.findById(longId);
+            return foundRecord.orElseThrow(IllegalArgumentException::new);
         } catch (IllegalArgumentException ex) {
             throw new RecordNotFoundException(id);
         }
