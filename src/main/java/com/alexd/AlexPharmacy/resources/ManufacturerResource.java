@@ -1,7 +1,9 @@
 package com.alexd.AlexPharmacy.resources;
 
 import com.alexd.AlexPharmacy.domain.Manufacturer;
-import com.alexd.AlexPharmacy.service.ManufacturerService;
+import com.alexd.AlexPharmacy.domain.PharmacyDomain;
+import com.alexd.AlexPharmacy.repository.ManufacturerRepository;
+import com.alexd.AlexPharmacy.service.DataService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,17 +25,24 @@ import java.util.List;
 public class ManufacturerResource {
 
     /**
-     * Manufacturer table interaction service.
+     * Manufacturer table repository.
      */
-    private final ManufacturerService manufacturerService;
+    private final ManufacturerRepository manufacturerRepository;
 
     /**
-     * Spring DI constructor for ManufacturerService.
-     *
-     * @param manufacturerService - service for interaction with manufacturers table
+     * DB interaction service.
      */
-    public ManufacturerResource(final ManufacturerService manufacturerService) {
-        this.manufacturerService = manufacturerService;
+    private final DataService dataService;
+
+    /**
+     * Spring DI constructor for ManufacturerRepository and DataService.
+     *
+     * @param manufacturerRepository Manufacturer table repository
+     * @param dataService            DB interaction service
+     */
+    public ManufacturerResource(final ManufacturerRepository manufacturerRepository, final DataService dataService) {
+        this.manufacturerRepository = manufacturerRepository;
+        this.dataService = dataService;
     }
 
     /**
@@ -42,8 +51,8 @@ public class ManufacturerResource {
      * @return List of Manufacturer objects
      */
     @GetMapping
-    public ResponseEntity<List<Manufacturer>> getManufacturers() {
-        var manufacturers = manufacturerService.getAllManufacturers();
+    public ResponseEntity<List<? extends PharmacyDomain>> getManufacturers() {
+        var manufacturers = dataService.getAllRecords(manufacturerRepository);
         return new ResponseEntity<>(manufacturers, HttpStatus.OK);
     }
 
@@ -54,8 +63,8 @@ public class ManufacturerResource {
      * @return Basket record founded by ID
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Manufacturer> getManufacturerById(@PathVariable final String id) {
-        var foundedManufacturer = manufacturerService.getManufacturerById(id);
+    public ResponseEntity<? extends PharmacyDomain> getManufacturerById(@PathVariable final String id) {
+        var foundedManufacturer = dataService.getRecordById(manufacturerRepository, id);
         return new ResponseEntity<>(foundedManufacturer, HttpStatus.OK);
     }
 
@@ -67,7 +76,7 @@ public class ManufacturerResource {
      */
     @PostMapping
     public ResponseEntity<Object> addManufacturer(@Valid @RequestBody final Manufacturer newManufacturer) {
-        manufacturerService.addNewManufacturer(newManufacturer);
+        dataService.saveRecord(manufacturerRepository, newManufacturer);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -79,7 +88,7 @@ public class ManufacturerResource {
      */
     @PutMapping
     public ResponseEntity<Object> updateManufacturer(@Valid @RequestBody final Manufacturer updManufacturer) {
-        manufacturerService.updateManufacturer(updManufacturer);
+        dataService.updateRecord(manufacturerRepository, updManufacturer);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -91,7 +100,7 @@ public class ManufacturerResource {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteManufacturer(@PathVariable final String id) {
-        manufacturerService.deleteManufacturer(id);
+        dataService.deleteRecord(manufacturerRepository, id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

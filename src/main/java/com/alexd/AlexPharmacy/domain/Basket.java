@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Table(name = "baskets")
 @Data
 @NoArgsConstructor
-public class Basket {
+public class Basket implements PharmacyDomain {
 
     /**
      * Identification number of basket.

@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Table(name = "clients")
 @Data
 @NoArgsConstructor
-public class Client {
+public class Client implements PharmacyDomain {
 
     /**
      * Identification number of client.

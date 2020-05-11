@@ -17,7 +17,7 @@ import java.util.List;
 @Table(name = "diseases")
 @Data
 @NoArgsConstructor
-public class Disease {
+public class Disease implements PharmacyDomain {
 
     /**
      * Identification number of disease.

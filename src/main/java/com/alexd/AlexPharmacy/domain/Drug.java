@@ -20,7 +20,7 @@ import java.util.List;
 @Table(name = "drugs")
 @Data
 @NoArgsConstructor
-public class Drug {
+public class Drug implements PharmacyDomain {
 
     /**
      * Identification number of drug.

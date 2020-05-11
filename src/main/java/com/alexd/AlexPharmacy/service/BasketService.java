@@ -1,7 +1,7 @@
 package com.alexd.AlexPharmacy.service;
 
 import com.alexd.AlexPharmacy.domain.Basket;
-import com.alexd.AlexPharmacy.exception.basket.BasketNotFoundException;
+import com.alexd.AlexPharmacy.exception.RecordNotFoundException;
 import com.alexd.AlexPharmacy.repository.BasketRepository;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.jetbrains.annotations.NotNull;
@@ -48,7 +48,7 @@ public class BasketService {
             var foundedBasket = basketRepository.findById(longId);
             return foundedBasket.orElseThrow(IllegalArgumentException::new);
         } catch (IllegalArgumentException ex) {
-            throw new BasketNotFoundException(id);
+            throw new RecordNotFoundException(id);
         }
     }
 

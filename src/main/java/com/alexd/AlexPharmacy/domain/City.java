@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "cities")
 @Data
 @NoArgsConstructor
-public class City {
+public class City implements PharmacyDomain {
 
     /**
      * Identification number of city.
