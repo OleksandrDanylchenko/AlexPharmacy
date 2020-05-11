@@ -76,6 +76,18 @@
       >
         <h3 class="m-0">Кошики</h3>
       </router-link>
+
+      <div class="w-100" />
+
+      <router-link
+        to="/requests"
+        tag="button"
+        class="btn btn-danger rounded-pill w-50 my-3 fadeInUp"
+        v-wow
+        data-wow-delay="0.6s"
+      >
+        <h3 class="m-0">Запити</h3>
+      </router-link>
     </div>
   </div>
 </template>

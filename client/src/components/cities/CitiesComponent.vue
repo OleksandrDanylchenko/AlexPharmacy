@@ -1,0 +1,195 @@
+<template>
+  <div>
+    <b-row>
+      <b-col>
+        <b-button pill variant="outline-danger" @click="openCitiesModal(-1)">
+          <i class="fas fa-plus-circle"></i>&nbsp;Додати нове авто
+        </b-button>
+      </b-col>
+    </b-row>
+    <div class="mt-4">
+      <MessagesErrorsComponent
+        :messages="messages"
+        :errors="errors"
+        @dismissMessages="dismissMessages"
+        @dismissErrors="dismissErrors"
+      />
+      <b-row>
+        <b-col>
+          <h1 class="mb-3 display-4">Список міст-філіалів:</h1>
+          <b-table
+            id="citiesTable"
+            hover
+            :items="cities"
+            :fields="fields"
+            :busy.sync="isBusy"
+            primary-key="id"
+          >
+            <template v-slot:table-busy>
+              <div class="text-center text-danger mt-2">
+                <b-spinner
+                  type="grow"
+                  class="align-middle"
+                  style="width: 3rem; height: 3rem;"
+                />
+                <strong>&nbsp;Завантаження таблиці...</strong>
+              </div>
+            </template>
+            <template v-slot:cell(editModal)="data">
+              <b-button
+                pill
+                variant="outline-primary"
+                @click="openCitiesModal(data.item.id)"
+              >
+                <i class="fa fa-edit"></i>
+              </b-button>
+            </template>
+            <template v-slot:cell(deleteModal)="data">
+              <b-button
+                pill
+                variant="outline-danger"
+                @click="openDeleteModal(data.item.id)"
+              >
+                <i class="fa fa-trash"></i>
+              </b-button>
+            </template>
+          </b-table>
+        </b-col>
+      </b-row>
+    </div>
+    <CitiesModal
+      :processingId="processingId"
+      @addCar="addCity"
+      @updateCar="updateCity"
+      @addError="addError"
+    />
+    <DeleteModal :processingId="processingId" @deleteRecord="deleteCities" />
+  </div>
+</template>
+
+<script>
+import MessagesErrorsComponent from "../common/MessagesErrorsComponent";
+import { MessagesErrorsDismissMixin } from "../../mixins/MessagesErrorsDismissMixin";
+import CitiesModal from "./CitiesModal";
+import DeleteModal from "../common/DeleteModal";
+import DataService from "../../service/DataService";
+
+export default {
+  mixins: [MessagesErrorsDismissMixin],
+  name: "CitiesComponent",
+  components: {
+    MessagesErrorsComponent,
+    CitiesModal,
+    DeleteModal
+  },
+  data() {
+    return {
+      fields: [
+        {
+          key: "id",
+          label: "ID",
+          sortable: true,
+          thClass: "text-danger text-center",
+          tdClass: "text-danger text-center",
+          thStyle: "vertical-align: middle;"
+        },
+        {
+          key: "name",
+          label: "Назва міста",
+          sortable: true,
+          thClass: "text-center",
+          tdClass: "text-center",
+          thStyle: "vertical-align: middle;"
+        }
+      ],
+      cities: [],
+      isBusy: true,
+      processingId: Number.MIN_VALUE,
+      resource: "cities",
+
+      messages: [],
+      errors: []
+    };
+  },
+  methods: {
+    refreshCities() {
+      this.isBusy = true;
+      DataService.retrieveAllRecords(this.resource)
+        .then(response => {
+          this.$log.debug("Cities loaded: ", response.data);
+          this.cities = response.data;
+          this.isBusy = false;
+        })
+        .catch(error => {
+          this.$log.debug(error);
+          this.addError(`Сталася помилка завантаження таблиці`);
+          this.addError(error);
+        });
+    },
+    openCitiesModal(id) {
+      this.dismissMessages();
+      this.dismissErrors();
+      this.processingId = id;
+      this.$bvModal.show("citiesModal");
+    },
+    addCity(newCity) {
+      this.isBusy = true;
+      DataService.addRecord(this.resource, newCity)
+        .then(() => {
+          this.$log.debug("Added city " + newCity);
+          this.addMessage(`Нове місто додано успішно`);
+          this.refreshCities();
+        })
+        .catch(error => {
+          this.$log.debug(error);
+          this.addError(error);
+        });
+      this.isBusy = false;
+      this.$bvModal.hide("citiesModal");
+    },
+    updateCity(updateCities) {
+      this.isBusy = true;
+      DataService.updateRecord(this.resource, updateCities)
+        .then(() => {
+          this.$log.debug("Updated city " + updateCities);
+          this.addMessage(`Місто №${updateCities.id} змінено успішно`);
+          this.refreshCities();
+        })
+        .catch(error => {
+          this.$log.debug(error);
+          this.addError(error);
+        });
+      this.isBusy = false;
+      this.$bvModal.hide("citiesModal");
+    },
+    openDeleteModal(id) {
+      this.processingId = id;
+      this.dismissMessages();
+      this.dismissErrors();
+      this.$bvModal.show("deleteModal");
+    },
+    deleteCities(id) {
+      this.isBusy = true;
+      DataService.deleteRecord(this.resource, id)
+        .then(() => {
+          this.$log.debug("Deleted city №" + id);
+          this.addMessage(`Видалення автомобіля №${id} виконано успішно`);
+          this.refreshCities();
+        })
+        .catch(error => {
+          this.$log.debug(error);
+          this.addError(`Видалення автомобіля №${id} не виконано!`);
+        });
+      this.isBusy = false;
+      this.$bvModal.hide("deleteModal");
+    }
+  },
+  created() {
+    this.refreshCities();
+  }
+};
+</script>
+
+<style lang="css">
+@import "../../styles/gradient.css";
+</style>

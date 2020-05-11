@@ -14,32 +14,38 @@ const router = new Router({
     {
       path: "/cities",
       name: "Cities",
-      component: () => import("./components/CitiesComponent")
+      component: () => import("./components/cities/CitiesComponent")
     },
     {
       path: "/clients",
       name: "Clients",
-      component: () => import("./components/ClientsComponent")
+      component: () => import("./components/clients/ClientsComponent")
     },
     {
       path: "/baskets",
       name: "Baskets",
-      component: () => import("./components/BasketsComponent")
+      component: () => import("./components/baskets/BasketsComponent")
     },
     {
       path: "/diseases",
       name: "Diseases",
-      component: () => import("./components/DiseasesComponent")
+      component: () => import("./components/diseases/DiseasesComponent")
     },
     {
       path: "/drugs",
       name: "Drugs",
-      component: () => import("./components/DrugsComponent")
+      component: () => import("./components/drugs/DrugsComponent")
     },
     {
       path: "/manufacturers",
       name: "Manufacturers",
-      component: () => import("./components/ManufacturersComponent")
+      component: () =>
+        import("./components/manufacturers/ManufacturersComponent")
+    },
+    {
+      path: "/requests",
+      name: "Requests",
+      component: () => import("./components/requests/RequestsComponent")
     }
   ]
 });

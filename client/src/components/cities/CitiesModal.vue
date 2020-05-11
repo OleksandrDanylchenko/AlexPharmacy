@@ -1,9 +1,11 @@
 <template>
-  <div class=""></div>
+  <div></div>
 </template>
 
 <script>
 export default {
-  name: "CitiesComponent"
+  name: "CitiesModal"
 };
 </script>
+
+<style scoped></style>
