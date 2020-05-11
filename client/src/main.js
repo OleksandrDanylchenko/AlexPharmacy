@@ -6,6 +6,7 @@ import BootstrapVue from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 Vue.use(BootstrapVue);
+import vWow from "v-wow";
 
 import VeeValidate, {
   ValidationObserver,
@@ -19,7 +20,6 @@ Vue.component("ValidationProvider", ValidationProvider);
 import uk from "vee-validate/dist/locale/uk";
 Validator.localize("uk", uk);
 
-import vWow from "v-wow";
 Vue.use(vWow);
 
 Vue.config.productionTip = true;
