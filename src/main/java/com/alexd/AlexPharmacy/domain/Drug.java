@@ -33,6 +33,7 @@ public class Drug implements PharmacyDomain {
     /**
      * Name of drug.
      */
+    @Column(unique = true)
     @NotNull(message = "Назва препарату не може бути відсутньою")
     @NotEmpty(message = "Назва препарату не може бути пустою")
     private String name;
@@ -40,6 +41,7 @@ public class Drug implements PharmacyDomain {
     /**
      * Manufacturer of drug.
      */
+    @NotNull(message = "Виробник не може бути відсутнім")
     @ManyToOne
     @JoinColumn(name = "manufacturer_id")
     private Manufacturer manufacturer;
