@@ -8,8 +8,38 @@ const router = new Router({
   routes: [
     {
       path: "/",
-      name: "Home",
-      component: () => import("./components/HelloWorld")
+      name: "Landing",
+      component: () => import("./components/Landing")
+    },
+    {
+      path: "/cities",
+      name: "Cities",
+      component: () => import("./components/CitiesComponent")
+    },
+    {
+      path: "/clients",
+      name: "Clients",
+      component: () => import("./components/ClientsComponent")
+    },
+    {
+      path: "/baskets",
+      name: "Baskets",
+      component: () => import("./components/BasketsComponent")
+    },
+    {
+      path: "/diseases",
+      name: "Diseases",
+      component: () => import("./components/DiseasesComponent")
+    },
+    {
+      path: "/drugs",
+      name: "Drugs",
+      component: () => import("./components/DrugsComponent")
+    },
+    {
+      path: "/manufacturers",
+      name: "Manufacturers",
+      component: () => import("./components/ManufacturersComponent")
     }
   ]
 });
