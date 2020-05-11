@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Table(name = "baskets")
 @Data
 @NoArgsConstructor
-public class Basket {
+public class Basket implements PharmacyDomain {
 
     /**
      * Identification number of basket.
@@ -46,7 +46,7 @@ public class Basket {
     /**
      * Date and time of buying.
      */
-    @NotNull
-    private LocalDateTime localDateTime;
+    @NotNull(message = "Час покупки не може бути відсутнім")
+    private LocalDateTime buyingTime;
 
 }

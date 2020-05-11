@@ -3,6 +3,7 @@ package com.alexd.AlexPharmacy.domain;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,10 +14,10 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "manufacturer")
+@Table(name = "manufacturers")
 @Data
 @NoArgsConstructor
-public class Manufacturer {
+public class Manufacturer implements PharmacyDomain {
 
     /**
      * Identification number of manufacturer.
@@ -28,8 +29,9 @@ public class Manufacturer {
     /**
      * Trademark of manufacturer.
      */
-    @NotNull
-    @NotEmpty
+    @Column(unique = true)
+    @NotNull(message = "Торгова марка не може бути відсутньою")
+    @NotEmpty(message = "Торгова марка не може бути пустою")
     private String trademark;
 
     /**

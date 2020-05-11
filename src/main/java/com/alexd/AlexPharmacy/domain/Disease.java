@@ -1,8 +1,10 @@
 package com.alexd.AlexPharmacy.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,7 +18,7 @@ import java.util.List;
 @Table(name = "diseases")
 @Data
 @NoArgsConstructor
-public class Disease {
+public class Disease implements PharmacyDomain {
 
     /**
      * Identification number of disease.
@@ -28,13 +30,15 @@ public class Disease {
     /**
      * Name of disease.
      */
-    @NotNull
-    @NotEmpty
-    private String diseaseName;
+    @Column(unique = true)
+    @NotNull(message = "Назва хвороби не може бути відсутньою")
+    @NotEmpty(message = "Назва хвороби не може бути пустою")
+    private String name;
 
     /**
      * List of drugs, which can cure specified disease.
      */
+    @JsonIgnoreProperties("diseases")
     @ManyToMany(mappedBy = "diseases")
     private List<Drug> drugs;
 

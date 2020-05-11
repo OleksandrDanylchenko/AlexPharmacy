@@ -3,6 +3,7 @@ package com.alexd.AlexPharmacy.domain;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "cities")
 @Data
 @NoArgsConstructor
-public class City {
+public class City implements PharmacyDomain {
 
     /**
      * Identification number of city.
@@ -26,8 +27,9 @@ public class City {
     /**
      * Name of city.
      */
-    @NotNull
-    @NotEmpty
+    @Column(unique = true)
+    @NotNull(message = "Назва міста не може бути відсутньою")
+    @NotEmpty(message = "Назва міста не може бути пустою")
     private String name;
 
 }
