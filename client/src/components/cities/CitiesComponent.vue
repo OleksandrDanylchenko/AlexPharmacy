@@ -66,8 +66,8 @@
     </div>
     <CitiesModal
       :processingId="processingId"
-      @addCar="addCity"
-      @updateCar="updateCity"
+      @addCity="addCity"
+      @updateCity="updateCity"
       @addError="addError"
     />
     <DeleteModal :processingId="processingId" @deleteRecord="deleteCities" />
@@ -151,7 +151,7 @@ export default {
       this.dismissMessages();
       this.dismissErrors();
       this.processingId = id;
-      this.$bvModal.show("citiesModal");
+      this.$bvModal.show("cityModal");
     },
     addCity(newCity) {
       this.isBusy = true;
@@ -166,11 +166,14 @@ export default {
           this.addError(error);
         });
       this.isBusy = false;
-      this.$bvModal.hide("citiesModal");
+      this.$bvModal.hide("cityModal");
     },
     updateCity(updateCities) {
       this.isBusy = true;
-      DataService.updateRecord(this.resource, updateCities)
+      DataService.updateRecord(
+        this.resource + "/" + this.processingId,
+        updateCities
+      )
         .then(() => {
           this.$log.debug("Updated city " + updateCities);
           this.addMessage(`Місто №${updateCities.id} змінено успішно`);
@@ -181,7 +184,7 @@ export default {
           this.addError(error);
         });
       this.isBusy = false;
-      this.$bvModal.hide("citiesModal");
+      this.$bvModal.hide("cityModal");
     },
     openDeleteModal(id) {
       this.processingId = id;

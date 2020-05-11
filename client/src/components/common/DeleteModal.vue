@@ -24,10 +24,10 @@
       </b-row>
     </template>
     <template v-slot:modal-footer="{ cancel }">
-      <b-button size="sm" variant="dark" @click="cancel()">
+      <b-button variant="primary" @click="cancel()">
         Скасувати
       </b-button>
-      <b-button size="sm" variant="danger" @click="deleteRecord">
+      <b-button variant="danger" @click="deleteRecord">
         Видалити
       </b-button>
     </template>
