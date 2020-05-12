@@ -1,11 +1,13 @@
 <template>
   <div>
     <div class="d-flex justify-content-center flex-wrap">
-      <div class="display-4 text-center mt-3 text-primary fadeInDown" v-wow>
+      <h1 class="display-4 text-center mt-3 text-primary fadeInDown" v-wow>
         Адміністративна панель<br />
         аптечної мережі<br />
         <div class="text-danger">Alex Pharmacy</div>
-      </div>
+      </h1>
+
+      <div class="w-100"></div>
 
       <router-link
         to="/cities"
@@ -101,6 +103,10 @@ export default {
 <style lang="css">
 @import "../styles/gradient.css";
 @import "../styles/animate.css";
+
+h3 {
+  font-weight: 300;
+}
 
 .shiftRight {
   position: relative;

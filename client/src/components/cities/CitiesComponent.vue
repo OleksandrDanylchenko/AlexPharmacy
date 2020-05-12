@@ -8,20 +8,18 @@
         @dismissErrors="dismissErrors"
       />
       <b-row>
+        <b-col
+          class="d-flex justify-content-between align-items-center mb-3 fadeInLeft"
+          v-wow
+        >
+          <h1 class="display-4 text-primary">Список міст-філіалів:</h1>
+          <b-button pill variant="outline-success" @click="openCitiesModal(-1)">
+            <i class="fas fa-plus-circle" />&nbsp;Додати нове місто
+          </b-button>
+        </b-col>
+      </b-row>
+      <b-row>
         <b-col>
-          <b-row
-            class="d-flex justify-content-between align-items-center mb-3 fadeInLeft"
-            v-wow
-          >
-            <h1 class="display-4 text-primary">Список міст-філіалів:</h1>
-            <b-button
-              pill
-              variant="outline-success"
-              @click="openCitiesModal(-1)"
-            >
-              <i class="fas fa-plus-circle" />&nbsp;Додати нове місто
-            </b-button>
-          </b-row>
           <div class="fadeInLeft" v-wow>
             <b-table
               id="citiesTable"
@@ -75,13 +73,13 @@
 </template>
 
 <script>
-import MessagesErrorsComponent from "../common/MessagesErrorsComponent";
-import { MessagesErrorsDismissMixin } from "../../mixins/MessagesErrorsDismissMixin";
-import CitiesModal from "./CitiesModal";
-import DeleteModal from "../common/DeleteModal";
-import DataService from "../../service/DataService";
+  import MessagesErrorsComponent from "../common/MessagesErrorsComponent";
+  import {MessagesErrorsDismissMixin} from "../../mixins/MessagesErrorsDismissMixin";
+  import CitiesModal from "./CitiesModal";
+  import DeleteModal from "../common/DeleteModal";
+  import DataService from "../../service/DataService";
 
-export default {
+  export default {
   mixins: [MessagesErrorsDismissMixin],
   name: "CitiesComponent",
   components: {
@@ -143,7 +141,7 @@ export default {
         })
         .catch(error => {
           this.$log.debug(error);
-          this.addError(`Сталася помилка завантаження таблиці`);
+          this.addError(`Сталася помилка завантаження таблиці: `);
           this.addError(error);
         });
     },
@@ -197,12 +195,12 @@ export default {
       DataService.deleteRecord(this.resource, id)
         .then(() => {
           this.$log.debug("Deleted city №" + id);
-          this.addMessage(`Видалення автомобіля №${id} виконано успішно`);
+          this.addMessage(`Видалення міста №${id} виконано успішно`);
           this.refreshCities();
         })
         .catch(error => {
           this.$log.debug(error);
-          this.addError(`Видалення автомобіля №${id} не виконано!`);
+          this.addError(`Видалення міста №${id} не виконано!`);
         });
       this.isBusy = false;
       this.$bvModal.hide("deleteModal");
