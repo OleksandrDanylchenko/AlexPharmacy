@@ -81,15 +81,35 @@
 
       <div class="w-100" />
 
-      <router-link
-        to="/requests"
-        tag="button"
-        class="btn btn-danger rounded-pill w-50 my-2 fadeInUp shiftRight"
+      <b-button
+        pill
+        variant="danger"
+        class="w-50 my-2 fadeInUp"
         v-wow
         data-wow-delay="0.6s"
+        v-b-toggle.request
       >
         <h3 class="m-0 landing-button-text">Запити</h3>
-      </router-link>
+      </b-button>
+
+      <div class="w-100" />
+
+      <b-collapse id="request" class="mt-2">
+        <router-link
+          to="/requests"
+          tag="button"
+          class="btn btn-danger rounded-pill shiftLeft mr-3"
+        >
+          <h3 class="m-0 landing-button-text">Прості запити</h3>
+        </router-link>
+        <router-link
+          to="/requests"
+          tag="button"
+          class="btn btn-danger rounded-pill shiftRight"
+        >
+          <h3 class="m-0 landing-button-text">Множинні запити</h3>
+        </router-link>
+      </b-collapse>
     </div>
   </div>
 </template>
