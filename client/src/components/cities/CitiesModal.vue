@@ -63,13 +63,13 @@ export default {
         id: null,
         name: null
       },
-      resource: "cities"
+      citiesResource: "cities"
     };
   },
   methods: {
     loadValues() {
       this.$nextTick(() => {
-        DataService.retrieveRecord(this.resource, this.processingId)
+        DataService.retrieveRecord(this.citiesResource, this.processingId)
           .then(response => {
             this.$log.debug("Loaded data of city №" + this.processingId);
             this.formCity.name = response.data.name;

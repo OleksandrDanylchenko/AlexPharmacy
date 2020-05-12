@@ -126,7 +126,7 @@ export default {
       cities: [],
       isBusy: true,
       processingId: Number.MIN_VALUE,
-      resource: "cities",
+      citiesResource: "cities",
 
       messages: [],
       errors: []
@@ -135,7 +135,7 @@ export default {
   methods: {
     refreshCities() {
       this.isBusy = true;
-      DataService.retrieveAllRecords(this.resource)
+      DataService.retrieveAllRecords(this.citiesResource)
         .then(response => {
           this.$log.debug("Cities loaded: ", response.data);
           this.cities = response.data._embedded.cities;
@@ -155,7 +155,7 @@ export default {
     },
     addCity(newCity) {
       this.isBusy = true;
-      DataService.addRecord(this.resource, newCity)
+      DataService.addRecord(this.citiesResource, newCity)
         .then(() => {
           this.$log.debug("Added city " + newCity);
           this.addMessage(`Нове місто додано успішно`);
@@ -171,7 +171,7 @@ export default {
     updateCity(updateCities) {
       this.isBusy = true;
       DataService.updateRecord(
-        this.resource + "/" + this.processingId,
+        this.citiesResource + "/" + this.processingId,
         updateCities
       )
         .then(() => {
@@ -194,7 +194,7 @@ export default {
     },
     deleteCities(id) {
       this.isBusy = true;
-      DataService.deleteRecord(this.resource, id)
+      DataService.deleteRecord(this.citiesResource, id)
         .then(() => {
           this.$log.debug("Deleted city №" + id);
           this.addMessage(`Видалення міста №${id} виконано успішно`);

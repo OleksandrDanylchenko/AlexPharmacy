@@ -138,7 +138,7 @@ export default {
       clients: [],
       isBusy: true,
       processingId: Number.MIN_VALUE,
-      resource: "clients",
+      clientsResource: "clients",
 
       messages: [],
       errors: []
@@ -147,7 +147,7 @@ export default {
   methods: {
     refreshClients() {
       this.isBusy = true;
-      DataService.retrieveAllRecords(this.resource)
+      DataService.retrieveAllRecords(this.clientsResource)
         .then(response => {
           this.$log.debug("Clients loaded: ", response.data);
           this.clients = response.data._embedded.clients;
@@ -167,7 +167,7 @@ export default {
     },
     addClient(newClient) {
       this.isBusy = true;
-      DataService.addRecord(this.resource, newClient)
+      DataService.addRecord(this.clientsResource, newClient)
         .then(() => {
           this.$log.debug("Added client " + newClient);
           this.addMessage(`Нового клієнта додано успішно`);
@@ -183,7 +183,7 @@ export default {
     updateClient(updateClient) {
       this.isBusy = true;
       DataService.updateRecord(
-        this.resource + "/" + this.processingId,
+        this.clientsResource + "/" + this.processingId,
         updateClient
       )
         .then(() => {
@@ -206,7 +206,7 @@ export default {
     },
     deleteClient(id) {
       this.isBusy = true;
-      DataService.deleteRecord(this.resource, id)
+      DataService.deleteRecord(this.clientsResource, id)
         .then(() => {
           this.$log.debug("Deleted client №" + id);
           this.addMessage(`Видалення клієнта №${id} виконано успішно`);

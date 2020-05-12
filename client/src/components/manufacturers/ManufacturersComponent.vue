@@ -156,7 +156,7 @@ export default {
       manufacturers: [],
       isBusy: true,
       processingId: Number.MIN_VALUE,
-      resource: "manufacturers",
+      manufacturersResource: "manufacturers",
 
       messages: [],
       errors: []
@@ -165,7 +165,7 @@ export default {
   methods: {
     refreshManufacturers() {
       this.isBusy = true;
-      DataService.retrieveAllRecords(this.resource)
+      DataService.retrieveAllRecords(this.manufacturersResource)
         .then(response => {
           this.$log.debug("Manufacturers loaded: ", response.data);
           this.manufacturers = response.data;
@@ -185,7 +185,7 @@ export default {
     },
     addManufacturer(newManufacturer) {
       this.isBusy = true;
-      DataService.addRecord(this.resource, newManufacturer)
+      DataService.addRecord(this.manufacturersResource, newManufacturer)
         .then(() => {
           this.$log.debug("Added manufacturer " + newManufacturer);
           this.addMessage(`Нового виробника додано успішно`);
@@ -200,7 +200,7 @@ export default {
     },
     updateManufacturer(updateManufacturer) {
       this.isBusy = true;
-      DataService.updateRecord(this.resource, updateManufacturer)
+      DataService.updateRecord(this.manufacturersResource, updateManufacturer)
         .then(() => {
           this.$log.debug("Updater manufacturer " + updateManufacturer);
           this.addMessage(
@@ -223,7 +223,7 @@ export default {
     },
     deleteManufacturer(id) {
       this.isBusy = true;
-      DataService.deleteRecord(this.resource, id)
+      DataService.deleteRecord(this.manufacturersResource, id)
         .then(() => {
           this.$log.debug("Deleted manufacturer №" + id);
           this.addMessage(`Видалення виробника №${id} виконано успішно`);
@@ -242,3 +242,8 @@ export default {
   }
 };
 </script>
+
+<style lang="css">
+@import "../../styles/gradient.css";
+@import "../../styles/animate.css";
+</style>

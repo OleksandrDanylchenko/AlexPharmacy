@@ -108,13 +108,13 @@ export default {
       },
       minimumDate: "1945-01-01",
       maximumDate: "2007-12-30",
-      resource: "clients"
+      clientsResource: "clients"
     };
   },
   methods: {
     loadValues() {
       this.$nextTick(() => {
-        DataService.retrieveRecord(this.resource, this.processingId)
+        DataService.retrieveRecord(this.clientsResource, this.processingId)
           .then(response => {
             this.$log.debug("Loaded data of client №" + this.processingId);
             this.formClient.firstName = response.data.firstName;
