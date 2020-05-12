@@ -54,30 +54,30 @@
                 </b-input-group>
               </b-form-group>
             </ValidationProvider>
+
+            <!--        TODO Between validation-->
+            <ValidationProvider
+              rules="required|date_format:yyyy-mm-dd"
+              name="з датою дня народження"
+            >
+              <b-form-group slot-scope="{ valid, errors }">
+                <b-input-group prepend="День народження">
+                  <b-form-input
+                    type="date"
+                    v-model="formClient.birthday"
+                    :min="minimumDate"
+                    :max="maximumDate"
+                    :state="errors[0] ? false : valid ? true : null"
+                  >
+                  </b-form-input>
+                  <b-form-invalid-feedback>
+                    {{ errors[0] }}
+                  </b-form-invalid-feedback>
+                </b-input-group>
+              </b-form-group>
+            </ValidationProvider>
           </b-form>
         </ValidationObserver>
-
-        <!--        TODO Between validation-->
-        <ValidationProvider
-          rules="required|date_format:yyyy-mm-dd"
-          name="з датою дня народження"
-        >
-          <b-form-group slot-scope="{ valid, errors }">
-            <b-input-group prepend="День народження">
-              <b-form-input
-                type="date"
-                v-model="formClient.birthday"
-                :min="minimumDate"
-                :max="maximumDate"
-                :state="errors[0] ? false : valid ? true : null"
-              >
-              </b-form-input>
-              <b-form-invalid-feedback>
-                {{ errors[0] }}
-              </b-form-invalid-feedback>
-            </b-input-group>
-          </b-form-group>
-        </ValidationProvider>
       </template>
 
       <template v-slot:modal-footer="{ cancel }">
@@ -125,6 +125,7 @@ export default {
             this.$log.debug(error);
             if (error.status === 404) {
               this.$emit("addError", `${error}`);
+              this.$bvModal.hide("manufacturerModal");
             }
           });
         this.formClient.id = this.processingId;

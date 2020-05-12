@@ -78,6 +78,7 @@ export default {
             this.$log.debug(error);
             if (error.status === 404) {
               this.$emit("addError", `${error}`);
+              this.$bvModal.hide("manufacturerModal");
             }
           });
         this.formCity.id = this.processingId;
