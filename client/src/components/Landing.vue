@@ -10,7 +10,7 @@
       <router-link
         to="/cities"
         tag="button"
-        class="btn btn-success rounded-pill w-50 mt-4 mb-2 fadeInUp"
+        class="btn btn-success rounded-pill w-50 mt-4 mb-2 fadeInUp shiftRight"
         v-wow
         data-wow-delay="0.1s"
       >
@@ -22,7 +22,7 @@
       <router-link
         to="/manufacturers"
         tag="button"
-        class="btn btn-success rounded-pill w-50 my-2 fadeInUp"
+        class="btn btn-success rounded-pill w-50 my-2 fadeInUp shiftLeft"
         v-wow
         data-wow-delay="0.2s"
       >
@@ -34,7 +34,7 @@
       <router-link
         to="/clients"
         tag="button"
-        class="btn btn-success rounded-pill w-50 my-2 fadeInUp"
+        class="btn btn-success rounded-pill w-50 my-2 fadeInUp shiftRight"
         v-wow
         data-wow-delay="0.3s"
       >
@@ -46,7 +46,7 @@
       <router-link
         to="/drugs"
         tag="button"
-        class="btn btn-success rounded-pill w-50 my-2 fadeInUp"
+        class="btn btn-success rounded-pill w-50 my-2 fadeInUp shiftLeft"
         v-wow
         data-wow-delay="0.4s"
       >
@@ -58,7 +58,7 @@
       <router-link
         to="/diseases"
         tag="button"
-        class="btn btn-success rounded-pill w-50 my-2 fadeInUp"
+        class="btn btn-success rounded-pill w-50 my-2 fadeInUp shiftRight"
         v-wow
         data-wow-delay="0.5s"
       >
@@ -70,7 +70,7 @@
       <router-link
         to="/baskets"
         tag="button"
-        class="btn btn-success rounded-pill w-50 my-2 fadeInUp"
+        class="btn btn-success rounded-pill w-50 my-2 fadeInUp shiftLeft"
         v-wow
         data-wow-delay="0.6s"
       >
@@ -82,7 +82,7 @@
       <router-link
         to="/requests"
         tag="button"
-        class="btn btn-danger rounded-pill w-50 my-2 fadeInUp"
+        class="btn btn-danger rounded-pill w-50 my-2 fadeInUp shiftRight"
         v-wow
         data-wow-delay="0.6s"
       >
@@ -101,4 +101,22 @@ export default {
 <style lang="css">
 @import "../styles/gradient.css";
 @import "../styles/animate.css";
+
+.shiftRight {
+  position: relative;
+  left: 0;
+  transition: left ease 0.5s;
+}
+.shiftRight:hover {
+  left: 20px;
+}
+
+.shiftLeft {
+  position: relative;
+  right: 0;
+  transition: right ease 0.5s;
+}
+.shiftLeft:hover {
+  right: 20px;
+}
 </style>
