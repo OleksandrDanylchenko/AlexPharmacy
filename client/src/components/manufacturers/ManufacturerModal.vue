@@ -51,7 +51,7 @@
         </ValidationObserver>
       </template>
       <template v-slot:modal-footer="{ cancel }">
-        <b-button variant="dark" @click="cancel()">
+        <b-button variant="primary" @click="cancel()">
           Скасувати
         </b-button>
         <b-button type="submit" form="manufacturerForm" variant="danger">
@@ -90,7 +90,6 @@ export default {
         )
           .then(response => {
             this.$log.debug("Loaded data of city №" + this.processingId);
-            console.log(response.data);
             this.formManufacturer.trademark = response.data.trademark;
             this.formManufacturer.city.id = response.data.city.id;
           })

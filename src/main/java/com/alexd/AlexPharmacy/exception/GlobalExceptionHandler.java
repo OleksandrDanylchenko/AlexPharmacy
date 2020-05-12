@@ -47,7 +47,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({RecordExistException.class})
     public ResponseEntity<Object> handleExistException(final @NotNull Exception ex, final WebRequest request) {
         var errors = Collections.singletonList("Запис уже присутній у базі даних");
-        var apiError = new ApiError(HttpStatus.NOT_FOUND, ex.getLocalizedMessage(), errors);
+        var apiError = new ApiError(HttpStatus.CONFLICT, ex.getLocalizedMessage(), errors);
         return new ResponseEntity<>(apiError, new HttpHeaders(), apiError.getStatus());
     }
 
