@@ -5,26 +5,22 @@ import router from "./routes";
 import BootstrapVue from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
+import VeeValidate, {ValidationObserver, ValidationProvider, Validator} from "vee-validate";
+import uk from "vee-validate/dist/locale/uk";
+import vWow from "v-wow";
+import VueLogger from "vuejs-logger";
+
 Vue.use(BootstrapVue);
 
-import VeeValidate, {
-  ValidationObserver,
-  ValidationProvider,
-  Validator
-} from "vee-validate";
 Vue.use(VeeValidate, { fieldsBagName: "veeFields", errorBagName: "veeErrors" });
 Vue.component("ValidationObserver", ValidationObserver);
 Vue.component("ValidationProvider", ValidationProvider);
 
-import uk from "vee-validate/dist/locale/uk";
 Validator.localize("uk", uk);
 
-import vWow from "v-wow";
 Vue.use(vWow);
 
 Vue.config.productionTip = true;
-
-import VueLogger from "vuejs-logger";
 
 const options = {
   isEnabled: true,
