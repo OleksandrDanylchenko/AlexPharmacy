@@ -41,6 +41,11 @@
                   <strong>&nbsp;Завантаження таблиці...</strong>
                 </div>
               </template>
+
+              <template v-slot:cell(birthday)="data">
+                {{ data.item.birthday | moment("DD.MM.YYYY") }}
+              </template>
+
               <template v-slot:cell(editModal)="data">
                 <b-button
                   pill
