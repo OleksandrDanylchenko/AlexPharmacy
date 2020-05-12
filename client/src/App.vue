@@ -6,9 +6,13 @@
       integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
       crossorigin="anonymous"
     />
-    <p id="copyright" class="text-primary">
+    <a
+      id="copyright"
+      class="text-primary"
+      href="https://github.com/OlexanderD/AlexPharmacy"
+    >
       Alexander Danylchenko, Databases Work 2, 2020
-    </p>
+    </a>
     <b-container>
       <router-view />
     </b-container>
@@ -25,8 +29,9 @@ export default {
 #copyright {
   position: absolute;
   top: 10px;
-  right: 0;
+  right: 10px;
   writing-mode: vertical-lr;
   text-orientation: mixed;
+  text-decoration: none;
 }
 </style>
