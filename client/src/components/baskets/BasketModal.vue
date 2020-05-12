@@ -17,6 +17,7 @@
             @submit.prevent="validate().then(handleSubmit)"
             id="basketForm"
           >
+            <!--            TODO Validation-->
             <ValidationProvider rules="required" name="з датою покупки">
               <b-form-group slot-scope="{ valid, errors }">
                 <b-input-group prepend="Дача покупки">

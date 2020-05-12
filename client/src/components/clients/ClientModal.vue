@@ -56,20 +56,16 @@
             </ValidationProvider>
 
             <!--        TODO Between validation-->
-            <ValidationProvider
-              rules="required|date_format:yyyy-mm-dd"
-              name="з датою дня народження"
-            >
+            <ValidationProvider rules="required" name="з датою дня народження">
               <b-form-group slot-scope="{ valid, errors }">
                 <b-input-group prepend="День народження">
-                  <b-form-input
-                    type="date"
+                  <b-form-datepicker
                     v-model="formClient.birthday"
-                    :min="minimumDate"
-                    :max="maximumDate"
+                    placeholder=""
+                    reset-button
+                    locale="uk"
                     :state="errors[0] ? false : valid ? true : null"
-                  >
-                  </b-form-input>
+                  />
                   <b-form-invalid-feedback>
                     {{ errors[0] }}
                   </b-form-invalid-feedback>
