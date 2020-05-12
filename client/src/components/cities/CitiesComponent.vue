@@ -73,13 +73,13 @@
 </template>
 
 <script>
-  import MessagesErrorsComponent from "../common/MessagesErrorsComponent";
-  import {MessagesErrorsDismissMixin} from "../../mixins/MessagesErrorsDismissMixin";
-  import CitiesModal from "./CitiesModal";
-  import DeleteModal from "../common/DeleteModal";
-  import DataService from "../../service/DataService";
+import MessagesErrorsComponent from "../common/MessagesErrorsComponent";
+import { MessagesErrorsDismissMixin } from "../../mixins/MessagesErrorsDismissMixin";
+import CitiesModal from "./CitiesModal";
+import DeleteModal from "../common/DeleteModal";
+import DataService from "../../service/DataService";
 
-  export default {
+export default {
   mixins: [MessagesErrorsDismissMixin],
   name: "CitiesComponent",
   components: {

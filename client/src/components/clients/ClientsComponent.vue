@@ -73,13 +73,13 @@
 </template>
 
 <script>
-  import MessagesErrorsComponent from "../common/MessagesErrorsComponent";
-  import {MessagesErrorsDismissMixin} from "../../mixins/MessagesErrorsDismissMixin";
-  import ClientModal from "./ClientModal";
-  import DeleteModal from "../common/DeleteModal";
-  import DataService from "../../service/DataService";
+import MessagesErrorsComponent from "../common/MessagesErrorsComponent";
+import { MessagesErrorsDismissMixin } from "../../mixins/MessagesErrorsDismissMixin";
+import ClientModal from "./ClientModal";
+import DeleteModal from "../common/DeleteModal";
+import DataService from "../../service/DataService";
 
-  export default {
+export default {
   mixins: [MessagesErrorsDismissMixin],
   name: "ClientsComponent",
   components: {
@@ -180,7 +180,10 @@
     },
     updateClient(updateClient) {
       this.isBusy = true;
-      DataService.updateRecord(this.resource, updateClient)
+      DataService.updateRecord(
+        this.resource + "/" + this.processingId,
+        updateClient
+      )
         .then(() => {
           this.$log.debug("Updated client " + updateClient);
           this.addMessage(`Клієнта №${updateClient.id} змінено успішно`);

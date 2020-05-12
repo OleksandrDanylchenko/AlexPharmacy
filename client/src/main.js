@@ -5,7 +5,11 @@ import router from "./routes";
 import BootstrapVue from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
-import VeeValidate, {ValidationObserver, ValidationProvider, Validator} from "vee-validate";
+import VeeValidate, {
+  ValidationObserver,
+  ValidationProvider,
+  Validator
+} from "vee-validate";
 import uk from "vee-validate/dist/locale/uk";
 import vWow from "v-wow";
 import VueLogger from "vuejs-logger";

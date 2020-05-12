@@ -57,7 +57,7 @@
           </b-form>
         </ValidationObserver>
 
-<!--        TODO Between validation-->
+        <!--        TODO Between validation-->
         <ValidationProvider
           rules="required|date_format:yyyy-mm-dd"
           name="з датою дня народження"
@@ -93,9 +93,9 @@
 </template>
 
 <script>
-  import DataService from "../../service/DataService";
+import DataService from "../../service/DataService";
 
-  export default {
+export default {
   props: ["processingId"],
   name: "ClientModal",
   data() {
