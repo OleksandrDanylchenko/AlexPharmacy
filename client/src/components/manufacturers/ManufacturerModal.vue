@@ -76,8 +76,8 @@ export default {
           id: null
         }
       },
-      availableCities: [],
       manufacturersResource: "manufacturers",
+      availableCities: [],
       citiesResource: "cities"
     };
   },

@@ -38,6 +38,13 @@ const options = {
 
 Vue.use(VueLogger, options);
 
+const moment = require("moment");
+require("moment/locale/uk");
+
+Vue.use(require("vue-moment"), {
+  moment
+});
+
 new Vue({
   el: "#app",
   router,
