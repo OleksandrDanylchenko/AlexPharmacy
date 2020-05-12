@@ -136,7 +136,6 @@ export default {
         {
           key: "suitableDrugs",
           label: "Підходящі ліки",
-          sortable: true,
           thClass: "text-center",
           tdClass: "text-center",
           thStyle: "vertical-align: middle;"
@@ -175,9 +174,9 @@ export default {
           this.isBusy = false;
         })
         .catch(error => {
-          this.$log.debug(error);
+          this.$log.debug(error.response.data.errors);
           this.addError(`Сталася помилка завантаження таблиці: `);
-          this.addError(error);
+          this.addError(error.response.data.errors);
         });
     },
     openDiseaseModal(id) {
@@ -195,8 +194,8 @@ export default {
           this.refreshDiseases();
         })
         .catch(error => {
-          this.$log.debug(error);
-          this.addError(error);
+          this.$log.debug(error.response.data.errors);
+          this.addError(error.response.data.errors);
         });
       this.isBusy = false;
       this.$bvModal.hide("diseaseModal");
@@ -210,8 +209,8 @@ export default {
           this.refreshDiseases();
         })
         .catch(error => {
-          this.$log.debug(error);
-          this.addError(error);
+          this.$log.debug(error.response.data.errors);
+          this.addError(error.response.data.errors);
         });
       this.isBusy = false;
       this.$bvModal.hide("diseaseModal");
@@ -231,7 +230,7 @@ export default {
           this.refreshDiseases();
         })
         .catch(error => {
-          this.$log.debug(error);
+          this.$log.debug(error.response.data.errors);
           this.addError(`Видалення хвороби №${id} не виконано!`);
         });
       this.isBusy = false;

@@ -172,9 +172,9 @@ export default {
           this.isBusy = false;
         })
         .catch(error => {
-          this.$log.debug(error);
+          this.$log.debug(error.response.data.errors);
           this.addError(`Сталася помилка завантаження таблиці: `);
-          this.addError(error);
+          this.addError(error.response.data.errors);
         });
     },
     openManufacturerModal(id) {
@@ -192,8 +192,8 @@ export default {
           this.refreshManufacturers();
         })
         .catch(error => {
-          this.$log.debug(error);
-          this.addError(error);
+          this.$log.debug(error.response.data.errors);
+          this.addError(error.response.data.errors);
         });
       this.isBusy = false;
       this.$bvModal.hide("manufacturerModal");
@@ -209,8 +209,8 @@ export default {
           this.refreshManufacturers();
         })
         .catch(error => {
-          this.$log.debug(error);
-          this.addError(error);
+          this.$log.debug(error.response.data.errors);
+          this.addError(error.response.data.errors);
         });
       this.isBusy = false;
       this.$bvModal.hide("manufacturerModal");
@@ -230,7 +230,7 @@ export default {
           this.refreshManufacturers();
         })
         .catch(error => {
-          this.$log.debug(error);
+          this.$log.debug(error.response.data.errors);
           this.addError(`Видалення виробника №${id} не виконано!`);
         });
       this.isBusy = false;
