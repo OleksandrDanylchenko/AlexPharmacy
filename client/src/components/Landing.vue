@@ -16,7 +16,7 @@
         v-wow
         data-wow-delay="0.1s"
       >
-        <h3 class="m-0">Міста</h3>
+        <h3 class="m-0 landing-button-text">Міста</h3>
       </router-link>
 
       <div class="w-100" />
@@ -28,7 +28,7 @@
         v-wow
         data-wow-delay="0.2s"
       >
-        <h3 class="m-0">Виробники</h3>
+        <h3 class="m-0 landing-button-text">Виробники</h3>
       </router-link>
 
       <div class="w-100" />
@@ -40,7 +40,7 @@
         v-wow
         data-wow-delay="0.3s"
       >
-        <h3 class="m-0">Клієнти</h3>
+        <h3 class="m-0 landing-button-text">Клієнти</h3>
       </router-link>
 
       <div class="w-100" />
@@ -52,7 +52,7 @@
         v-wow
         data-wow-delay="0.4s"
       >
-        <h3 class="m-0">Препарати</h3>
+        <h3 class="m-0 landing-button-text">Препарати</h3>
       </router-link>
 
       <div class="w-100" />
@@ -64,7 +64,7 @@
         v-wow
         data-wow-delay="0.5s"
       >
-        <h3 class="m-0">Хвороби</h3>
+        <h3 class="m-0 landing-button-text">Хвороби</h3>
       </router-link>
 
       <div class="w-100" />
@@ -76,7 +76,7 @@
         v-wow
         data-wow-delay="0.6s"
       >
-        <h3 class="m-0">Кошики</h3>
+        <h3 class="m-0 landing-button-text">Кошики</h3>
       </router-link>
 
       <div class="w-100" />
@@ -88,7 +88,7 @@
         v-wow
         data-wow-delay="0.6s"
       >
-        <h3 class="m-0">Запити</h3>
+        <h3 class="m-0 landing-button-text">Запити</h3>
       </router-link>
     </div>
   </div>
@@ -104,7 +104,7 @@ export default {
 @import "../styles/gradient.css";
 @import "../styles/animate.css";
 
-h3 {
+.landing-button-text {
   font-weight: 300;
 }
 

@@ -7,7 +7,7 @@
       @hidden="resetForm"
     >
       <template v-slot:modal-title>
-        <h2>{{ actionMessage }}</h2>
+        <h3>{{ actionMessage }}</h3>
       </template>
 
       <template v-slot:default>

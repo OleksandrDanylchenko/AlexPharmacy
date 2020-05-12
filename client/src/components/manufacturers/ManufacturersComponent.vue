@@ -6,7 +6,7 @@
         :errors="errors"
         @dismissMessages="dismissMessages"
         @dismissErrors="dismissErrors"
-        class="fadeInLeft"
+        class="fadeInRight"
         v-wow
       />
 
@@ -89,13 +89,13 @@
 </template>
 
 <script>
-  import MessagesErrorsComponent from "../common/MessagesErrorsComponent";
-  import {MessagesErrorsDismissMixin} from "../../mixins/MessagesErrorsDismissMixin";
-  import ManufacturerModal from "./ManufacturerModal";
-  import DeleteModal from "../common/DeleteModal";
-  import DataService from "../../service/DataService";
+import MessagesErrorsComponent from "../common/MessagesErrorsComponent";
+import { MessagesErrorsDismissMixin } from "../../mixins/MessagesErrorsDismissMixin";
+import ManufacturerModal from "./ManufacturerModal";
+import DeleteModal from "../common/DeleteModal";
+import DataService from "../../service/DataService";
 
-  export default {
+export default {
   mixins: [MessagesErrorsDismissMixin],
   name: "ManufacturersComponent",
   components: {
@@ -203,7 +203,9 @@
       DataService.updateRecord(this.resource, updateManufacturer)
         .then(() => {
           this.$log.debug("Updater manufacturer " + updateManufacturer);
-          this.addMessage(`Клієнта №${updateManufacturer.id} змінено успішно`);
+          this.addMessage(
+            `Виробника №${updateManufacturer.id} змінено успішно`
+          );
           this.refreshManufacturers();
         })
         .catch(error => {
@@ -224,12 +226,12 @@
       DataService.deleteRecord(this.resource, id)
         .then(() => {
           this.$log.debug("Deleted manufacturer №" + id);
-          this.addMessage(`Видалення клієнта №${id} виконано успішно`);
+          this.addMessage(`Видалення виробника №${id} виконано успішно`);
           this.refreshManufacturers();
         })
         .catch(error => {
           this.$log.debug(error);
-          this.addError(`Видалення клієнта №${id} не виконано!`);
+          this.addError(`Видалення виробника №${id} не виконано!`);
         });
       this.isBusy = false;
       this.$bvModal.hide("deleteModal");
