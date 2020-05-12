@@ -19,7 +19,7 @@
               variant="outline-success"
               @click="openCitiesModal(-1)"
             >
-              <i class="fas fa-plus-circle"></i>&nbsp;Додати нове місто
+              <i class="fas fa-plus-circle" />&nbsp;Додати нове місто
             </b-button>
           </b-row>
           <div class="fadeInLeft" v-wow>
@@ -47,7 +47,7 @@
                   variant="outline-primary"
                   @click="openCitiesModal(data.item.id)"
                 >
-                  <i class="fa fa-edit"></i>
+                  <i class="fa fa-edit" />
                 </b-button>
               </template>
               <template v-slot:cell(deleteModal)="data">
@@ -56,7 +56,7 @@
                   variant="outline-danger"
                   @click="openDeleteModal(data.item.id)"
                 >
-                  <i class="fa fa-trash"></i>
+                  <i class="fa fa-trash" />
                 </b-button>
               </template>
             </b-table>

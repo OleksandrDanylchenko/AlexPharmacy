@@ -56,6 +56,7 @@ import DataService from "../../service/DataService";
 
 export default {
   props: ["processingId"],
+  name: "CitiesModal",
   data() {
     return {
       formCity: {
