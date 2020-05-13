@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="mt-4">
+      <Sidebar />
       <MessagesErrorsComponent
         :messages="messages"
         :errors="errors"
@@ -124,11 +125,13 @@ import DrugModal from "./DrugModal";
 import InstructionModal from "./InstructionModal";
 import DeleteModal from "../common/DeleteModal";
 import DataService from "../../service/DataService";
+import Sidebar from "../common/Sidebar";
 
 export default {
   mixins: [MessagesErrorsDismissMixin],
   name: "DrugsComponent",
   components: {
+    Sidebar,
     MessagesErrorsComponent,
     InstructionModal,
     DrugModal,

@@ -3,6 +3,7 @@
     id="copyright"
     class="text-primary"
     href="https://github.com/OlexanderD/AlexPharmacy"
+    target="_blank"
   >
     Alexander Danylchenko, Databases Work 2, 2020
   </a>
