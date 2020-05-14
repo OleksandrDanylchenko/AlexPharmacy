@@ -64,6 +64,8 @@
                     placeholder=""
                     reset-button
                     locale="uk"
+                    :min="minimumDate"
+                    :max="maximumDate"
                     :state="errors[0] ? false : valid ? true : null"
                   />
                   <b-form-invalid-feedback>
@@ -95,6 +97,15 @@ export default {
   props: ["processingId"],
   name: "ClientModal",
   data() {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+    const minDate = new Date(today);
+    minDate.setFullYear(minDate.getFullYear() - 110);
+
+    const maxDate = new Date(today);
+    maxDate.setFullYear(maxDate.getFullYear() - 12);
+
     return {
       formClient: {
         id: null,
@@ -102,9 +113,9 @@ export default {
         lastName: null,
         birthday: null
       },
-      minimumDate: "1945-01-01",
-      maximumDate: "2007-12-30",
-      clientsResource: "clients"
+      clientsResource: "clients",
+      minimumDate: minDate,
+      maximumDate: maxDate
     };
   },
   methods: {
