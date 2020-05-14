@@ -55,7 +55,6 @@
               </b-form-group>
             </ValidationProvider>
 
-            <!--        TODO Between validation-->
             <ValidationProvider rules="required" name="з датою дня народження">
               <b-form-group slot-scope="{ valid, errors }">
                 <b-input-group prepend="День народження">

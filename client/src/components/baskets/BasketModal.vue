@@ -17,7 +17,6 @@
             @submit.prevent="validate().then(handleSubmit)"
             id="basketForm"
           >
-            <!--            TODO Validation-->
             <ValidationProvider rules="required" name="з датою покупки">
               <b-form-group slot-scope="{ valid, errors }">
                 <b-input-group prepend="Дача покупки">
@@ -26,6 +25,8 @@
                     placeholder=""
                     reset-button
                     locale="uk"
+                    :min="minimumDate"
+                    :max="maximumDate"
                     :state="errors[0] ? false : valid ? true : null"
                   />
                   <b-form-invalid-feedback>
@@ -104,6 +105,14 @@ export default {
   props: ["processingId"],
   name: "BasketModal",
   data() {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+    const minDate = new Date(today);
+    minDate.setFullYear(minDate.getFullYear() - 10);
+
+    const maxDate = new Date(today);
+
     return {
       formBasket: {
         id: null,
@@ -122,7 +131,10 @@ export default {
       availableClients: [],
       clientsResource: "clients",
       availableDrugs: [],
-      drugsResource: "drugs"
+      drugsResource: "drugs",
+
+      minimumDate: minDate,
+      maximumDate: maxDate
     };
   },
   methods: {
