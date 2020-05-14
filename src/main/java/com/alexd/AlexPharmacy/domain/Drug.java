@@ -33,7 +33,6 @@ public class Drug implements PharmacyDomain {
     /**
      * Name of drug.
      */
-    @Column(unique = true)
     @NotNull(message = "Назва препарату не може бути відсутньою")
     @NotEmpty(message = "Назва препарату не може бути пустою")
     private String name;
@@ -49,7 +48,6 @@ public class Drug implements PharmacyDomain {
     /**
      * Usage instruction for drug.
      */
-    @Column(unique = true)
     @NotNull(message = "Інструкція не може бути відсутньою")
     @NotEmpty(message = "Інструкція не може бути пустою")
     private String instruction;

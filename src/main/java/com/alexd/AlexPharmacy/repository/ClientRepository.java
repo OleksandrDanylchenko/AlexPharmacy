@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
     /**
-     * Method for finding all clients with given last name.
+     * Method for counting all clients with given last name.
      *
      * @param lastName - criteria for finding all clients with same last name
      * @return returns list of client with given last name
      */
-    Iterable<Client> findAllByLastName(String lastName);
+    // Знайти кількість клієнтів з прізвищем lastName
+    Integer countByLastNameIgnoreCase(String lastName);
 
 }
