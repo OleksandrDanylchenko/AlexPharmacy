@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -55,12 +54,11 @@ public class Drug implements PharmacyDomain {
     /**
      * List of diseases treated with this drug.
      */
-
     @JsonIgnoreProperties("drugs")
     @ManyToMany
     @JoinTable(name = "disease_drug",
-            joinColumns = @JoinColumn(name = "disease_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "drug_id", referencedColumnName = "id"))
+            joinColumns = @JoinColumn(name = "drug_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "disease_id", referencedColumnName = "id"))
     private List<Disease> diseases;
 
 }
