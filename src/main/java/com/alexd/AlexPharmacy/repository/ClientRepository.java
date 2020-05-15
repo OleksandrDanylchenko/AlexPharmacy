@@ -4,8 +4,10 @@ import com.alexd.AlexPharmacy.domain.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @SuppressWarnings("unused")
@@ -25,5 +27,15 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
             + "( SELECT manufacturer_id FROM manufacturers WHERE manufacturers.trademark = ?1 ) ) )",
             nativeQuery = true)
     List<Client> findLastNameAndBirthdayClientWhoBoughtDrugByManufacturer(String manufacturerName);
+
+    @Query(value = "SELECT * FROM clients C WHERE C.birthday != ?1 AND "
+            + "NOT EXISTS( SELECT baskets.drug_id FROM baskets WHERE baskets.client_id = C.id EXCEPT "
+            + "( SELECT baskets.drug_id FROM baskets WHERE baskets.client_id IN "
+            + "( SELECT clients.id FROM clients WHERE clients.birthday = ?1 ) ) ) AND "
+            + "NOT EXISTS( SELECT baskets.drug_id FROM baskets WHERE baskets.client_id IN "
+            + "( SELECT clients.id FROM clients WHERE clients.birthday = ?1 ) EXCEPT "
+            + "( SELECT baskets.drug_id FROM baskets WHERE baskets.client_id = C.id ) )",
+            nativeQuery = true)
+    List<Client> findClientByBirthdayWithSameDrugBasket(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate birthday);
 
 }
