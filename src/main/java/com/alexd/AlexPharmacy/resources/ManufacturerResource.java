@@ -37,7 +37,7 @@ public class ManufacturerResource {
     private final DataService dataService;
 
     /**
-     * Specified service for complex request.
+     * Specified service for complex request with manufacturer repository.
      */
     private final ManufacturerService manufacturerService;
 
@@ -86,7 +86,7 @@ public class ManufacturerResource {
      * @return List of manufacturers, which supply drug with drugName
      */
     @GetMapping("/trademarksSupplyDrug")
-    public ResponseEntity<List<String>> get(@RequestParam final String drugName) {
+    public ResponseEntity<List<String>> getSuppliersTrademarks(@RequestParam final String drugName) {
         var foundTrademarks = manufacturerService.getTrademarksBySupplyDrug(drugName);
         return new ResponseEntity<>(foundTrademarks, HttpStatus.OK);
     }
