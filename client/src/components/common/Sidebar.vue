@@ -9,10 +9,10 @@
           <router-link
             to="/"
             tag="button"
-            class="btn btn-success rounded-pill w-100 my-2 sidebar-logo-button fadeInLeft"
+            class="btn btn-success rounded-pill w-100 my-2 fadeInLeft"
             v-wow
           >
-            <h1 class="m-0 landing-button-text text-danger">
+            <h1 class="m-0 landing-button-text text-danger font-weight-normal">
               Alex Pharmacy
             </h1>
           </router-link>
