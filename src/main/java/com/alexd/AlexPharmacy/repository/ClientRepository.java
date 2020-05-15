@@ -13,6 +13,12 @@ import java.util.List;
 @RepositoryRestResource
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
+    /**
+     * Знайти прізвища та дні народження клієнтів, що придбали хоча б один препарат виробника manufacturerName.
+     *
+     * @param manufacturerName Name of manufacturer, who provide drug
+     * @return List of clients found by SQL request
+     */
     @Query(value = "SELECT * FROM clients WHERE clients.id IN "
             + "( SELECT baskets.client_id FROM baskets WHERE baskets.drug_id IN "
             + "( SELECT drugs.id FROM drugs WHERE drugs.manufacturer_id IN "
