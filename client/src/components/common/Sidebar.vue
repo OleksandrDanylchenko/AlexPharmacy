@@ -101,14 +101,16 @@
               <router-link
                 to="/requests"
                 tag="button"
-                class="btn btn-danger rounded-pill shiftLeft mb-2"
+                class="btn btn-danger rounded-pill shiftLeft mb-2 fadeInLeft"
+                v-wow
               >
                 <h3 class="m-0 landing-button-text">Прості запити</h3>
               </router-link>
               <router-link
                 to="/requests"
                 tag="button"
-                class="btn btn-danger rounded-pill shiftRight"
+                class="btn btn-danger rounded-pill shiftRight fadeInLeft"
+                v-wow
               >
                 <h3 class="m-0 landing-button-text">Множинні запити</h3>
               </router-link>
