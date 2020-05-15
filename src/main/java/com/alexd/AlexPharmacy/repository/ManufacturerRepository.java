@@ -20,4 +20,5 @@ public interface ManufacturerRepository extends JpaRepository<Manufacturer, Long
             + "WHERE manufacturers.id = drugs.manufacturer_id and drugs.name = ?1",
             nativeQuery = true)
     List<Manufacturer> findManufacturersBySupplyDrug(String drugName);
+
 }
