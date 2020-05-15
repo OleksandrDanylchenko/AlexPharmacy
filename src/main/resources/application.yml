@@ -9,6 +9,6 @@ spring:
     password: pharmacylab
     platform: mssql
   jpa:
-    show-sql: false
+    show-sql: true
     hibernate:
       ddl-auto: update
