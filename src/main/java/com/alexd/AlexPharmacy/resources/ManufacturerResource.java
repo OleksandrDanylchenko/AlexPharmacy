@@ -4,7 +4,6 @@ import com.alexd.AlexPharmacy.domain.Manufacturer;
 import com.alexd.AlexPharmacy.domain.PharmacyDomain;
 import com.alexd.AlexPharmacy.repository.ManufacturerRepository;
 import com.alexd.AlexPharmacy.service.DataService;
-import com.alexd.AlexPharmacy.service.ManufacturerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -37,22 +35,14 @@ public class ManufacturerResource {
     private final DataService dataService;
 
     /**
-     * Specified service for complex request with manufacturer repository.
-     */
-    private final ManufacturerService manufacturerService;
-
-    /**
      * Spring DI constructor for ManufacturerRepository and DataService.
      *
      * @param manufacturerRepository Manufacturers table repository
      * @param dataService            DB interaction service
-     * @param manufacturerService    Specified service for complex request
      */
-    public ManufacturerResource(final ManufacturerRepository manufacturerRepository, final DataService dataService,
-                                final ManufacturerService manufacturerService) {
+    public ManufacturerResource(final ManufacturerRepository manufacturerRepository, final DataService dataService) {
         this.manufacturerRepository = manufacturerRepository;
         this.dataService = dataService;
-        this.manufacturerService = manufacturerService;
     }
 
     /**
@@ -76,19 +66,6 @@ public class ManufacturerResource {
     public ResponseEntity<? extends PharmacyDomain> getManufacturerById(@PathVariable final String id) {
         var foundManufacturer = dataService.getRecordById(manufacturerRepository, id);
         return new ResponseEntity<>(foundManufacturer, HttpStatus.OK);
-    }
-
-    /**
-     * Specialized request endpoint method:
-     * Знайти торгові марки постачальників, що постачають препарат drugName
-     *
-     * @param drugName Name of drug, which supplied by manufacturer
-     * @return List of manufacturers, which supply drug with drugName
-     */
-    @GetMapping("/trademarksSupplyDrug")
-    public ResponseEntity<List<String>> getSuppliersTrademarks(@RequestParam final String drugName) {
-        var foundTrademarks = manufacturerService.getTrademarksBySupplyDrug(drugName);
-        return new ResponseEntity<>(foundTrademarks, HttpStatus.OK);
     }
 
     /**
