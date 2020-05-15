@@ -17,7 +17,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
      * Знайти прізвища та дні народження клієнтів, що придбали хоча б один препарат виробника manufacturerName.
      *
      * @param manufacturerName Name of manufacturer, who provide drug
-     * @return List of clients found by SQL request
+     * @return List of clients, who bought at least one drug from manufacturer
      */
     @Query(value = "SELECT * FROM clients WHERE clients.id IN "
             + "( SELECT baskets.client_id FROM baskets WHERE baskets.drug_id IN "
@@ -25,4 +25,5 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
             + "( SELECT manufacturer_id FROM manufacturers WHERE manufacturers.trademark = ?1 ) ) )",
             nativeQuery = true)
     List<Client> findLastNameAndBirthdayClientWhoBoughtDrugByManufacturer(String manufacturerName);
+
 }
