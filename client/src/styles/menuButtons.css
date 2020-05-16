@@ -1,0 +1,21 @@
+.landing-button-text {
+  font-weight: 300;
+}
+
+.shiftRight {
+  position: relative;
+  left: 0;
+  transition: left ease 0.5s;
+}
+.shiftRight:hover {
+  left: 20px;
+}
+
+.shiftLeft {
+  position: relative;
+  right: 0;
+  transition: right ease 0.5s;
+}
+.shiftLeft:hover {
+  right: 20px;
+}
