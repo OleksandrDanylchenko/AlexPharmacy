@@ -10,8 +10,15 @@ import java.util.List;
 @Repository
 public interface ManufacturerRepository extends JpaRepository<Manufacturer, Long> {
 
-    @Query(value = "SELECT DISTINCT manufacturers.trademark FROM manufacturers, drugs "
+    /**
+     * Знайти торгові марки постачальників, що постачають препарат drugName.
+     *
+     * @param drugName Name of drug, which supplied by manufacturer
+     * @return List of manufacturers,trade who supply drug with drugName
+     */
+    @Query(value = "SELECT * FROM manufacturers, drugs "
             + "WHERE manufacturers.id = drugs.manufacturer_id and drugs.name = ?1",
             nativeQuery = true)
-    List<String> findManufacturersTrademarksWhoSupplyDrug(String drugName);
+    List<Manufacturer> findManufacturersBySupplyDrug(String drugName);
+
 }
