@@ -17,120 +17,13 @@
           Прості запити
         </h1>
 
-        <b-card
-          no-body
-          class="mt-2 mx-auto w-75 fadeInLeft"
+        <FirstRequest
+          :drugsNames="drugsNames"
+          @addError="addError"
+          class="fadeInLeft"
           v-wow
-          data-wow-delay="0.1s"
-        >
-          <b-card-header header-tag="header" class="p-0" role="tab">
-            <b-button block v-b-toggle.request-0 variant="outline-success">
-              <span class="text-primary">1. {{ requests[0].text }}</span>
-            </b-button>
-          </b-card-header>
-          <b-collapse
-            id="request-0"
-            accordion="plain-request-accordion"
-            role="tabpanel"
-          >
-            <b-card-body>
-              <b-card-text>
-                Оберіть
-                <abbr title="Drug name (назва препарату)">DG</abbr> препарату:
-              </b-card-text>
-            </b-card-body>
-          </b-collapse>
-        </b-card>
-
-        <b-card
-          no-body
-          class="mt-2 mx-auto w-75 fadeInLeft"
-          v-wow
-          data-wow-delay="0.2s"
-        >
-          <b-card-header header-tag="header" class="p-0" role="tab">
-            <b-button block v-b-toggle.request-1 variant="outline-success">
-              <span class="text-primary">2. {{ requests[1].text }}</span>
-            </b-button>
-          </b-card-header>
-          <b-collapse
-            id="request-1"
-            accordion="plain-request-accordion"
-            role="tabpanel"
-          >
-            <b-card-body>
-              <b-card-text>fdhdfhdfh</b-card-text>
-            </b-card-body>
-          </b-collapse>
-        </b-card>
-
-        <b-card
-          no-body
-          class="mt-2 mx-auto w-75 fadeInLeft"
-          v-wow
-          data-wow-delay="0.3s"
-        >
-          <b-card-header header-tag="header" class="p-0" role="tab">
-            <b-button block v-b-toggle.request-2 variant="outline-success">
-              <span class="text-primary">3. {{ requests[2].text }}</span>
-            </b-button>
-          </b-card-header>
-          <b-collapse
-            id="request-2"
-            accordion="plain-request-accordion"
-            role="tabpanel"
-          >
-            <b-card-body>
-              <b-card-text>fdhdfhdfh</b-card-text>
-            </b-card-body>
-          </b-collapse>
-        </b-card>
-
-        <b-card
-          no-body
-          class="mt-2 mx-auto w-75 fadeInLeft"
-          v-wow
-          data-wow-delay="0.4s"
-        >
-          <b-card-header header-tag="header" class="p-0" role="tab">
-            <b-button block v-b-toggle.request-3 variant="outline-success">
-              <span class="text-primary">4. {{ requests[3].text }}</span>
-            </b-button>
-          </b-card-header>
-          <b-collapse
-            id="request-3"
-            accordion="plain-request-accordion"
-            role="tabpanel"
-          >
-            <b-card-body>
-              <b-card-text>fdhdfhdfh</b-card-text>
-            </b-card-body>
-          </b-collapse>
-        </b-card>
-
-        <b-card
-          no-body
-          class="mt-2 mx-auto w-75 fadeInLeft"
-          v-wow
-          data-wow-delay="0.5s"
-        >
-          <b-card-header header-tag="header" class="p-0" role="tab">
-            <b-button block v-b-toggle.request-4 variant="outline-success">
-              <span class="text-primary">5. {{ requests[4].text }}</span>
-            </b-button>
-          </b-card-header>
-          <b-collapse
-            id="request-4"
-            accordion="plain-request-accordion"
-            role="tabpanel"
-          >
-            <b-card-body>
-              <b-card-text>fdhdfhdfh</b-card-text>
-            </b-card-body>
-          </b-collapse>
-        </b-card>
+        />
       </div>
-
       <div class="w-50">
         <h1
           class="display-4 text-center mb-3 text-primary fadeInLeft"
@@ -139,72 +32,6 @@
         >
           Множинні запити
         </h1>
-
-        <b-card
-          no-body
-          class="mt-2 mx-auto w-75 fadeInLeft"
-          v-wow
-          data-wow-delay="0.3s"
-        >
-          <b-card-header header-tag="header" class="p-0" role="tab">
-            <b-button block v-b-toggle.request-5 variant="outline-success">
-              <span class="text-primary">1. {{ requests[5].text }}</span>
-            </b-button>
-          </b-card-header>
-          <b-collapse
-            id="request-5"
-            accordion="plain-request-accordion"
-            role="tabpanel"
-          >
-            <b-card-body>
-              <b-card-text>fdhdfhdfh</b-card-text>
-            </b-card-body>
-          </b-collapse>
-        </b-card>
-
-        <b-card
-          no-body
-          class="mt-2 mx-auto w-75 fadeInLeft"
-          v-wow
-          data-wow-delay="0.4s"
-        >
-          <b-card-header header-tag="header" class="p-0" role="tab">
-            <b-button block v-b-toggle.request-6 variant="outline-success">
-              <span class="text-primary">2. {{ requests[6].text }}</span>
-            </b-button>
-          </b-card-header>
-          <b-collapse
-            id="request-6"
-            accordion="plain-request-accordion"
-            role="tabpanel"
-          >
-            <b-card-body>
-              <b-card-text>fdhdfhdfh</b-card-text>
-            </b-card-body>
-          </b-collapse>
-        </b-card>
-
-        <b-card
-          no-body
-          class="mt-2 mx-auto w-75 fadeInLeft"
-          v-wow
-          data-wow-delay="0.5s"
-        >
-          <b-card-header header-tag="header" class="p-0" role="tab">
-            <b-button block v-b-toggle.request-7 variant="outline-success">
-              <span class="text-primary">3. {{ requests[7].text }}</span>
-            </b-button>
-          </b-card-header>
-          <b-collapse
-            id="request-7"
-            accordion="plain-request-accordion"
-            role="tabpanel"
-          >
-            <b-card-body>
-              <b-card-text>fdhdfhdfh</b-card-text>
-            </b-card-body>
-          </b-collapse>
-        </b-card>
       </div>
     </div>
   </div>
@@ -215,20 +42,19 @@ import Sidebar from "../common/Sidebar";
 import DataService from "../../service/DataService";
 import { MessagesErrorsDismissMixin } from "../../mixins/MessagesErrorsDismissMixin";
 import MessagesErrorsComponent from "../common/MessagesErrorsComponent";
+import FirstRequest from "./FirstRequest";
 
 export default {
   name: "RequestsComponent",
   mixins: [MessagesErrorsDismissMixin],
   components: {
     Sidebar,
-    MessagesErrorsComponent
+    MessagesErrorsComponent,
+    FirstRequest
   },
   data() {
     return {
       requests: [
-        {
-          text: "Знайти торгові марки постачальників, що постачають препарат DN"
-        },
         {
           text:
             "Знайти прізвища та дні народження клієнтів, " +
@@ -264,14 +90,17 @@ export default {
       errors: [],
 
       drugsResource: "drugs",
-      drugNames: [],
+      drugsNames: [],
 
       manufacturersResource: "manufacturers",
       manufacturersTrademarks: [],
+      chosenManufacturerTrademark: null,
 
       clientsResource: "clients",
-      clientsFirstName: [],
-      clientsBirthday: []
+      clientsFirstNames: [],
+      chosenClientFirstName: null,
+      clientsBirthdays: [],
+      chosenClientBirthday: null
     };
   },
   methods: {
@@ -285,7 +114,7 @@ export default {
               value: drug.name,
               text: drug.name
             };
-            this.drugNames.push(drugOption);
+            this.drugsNames.push(drugOption);
           });
         })
         .catch(error => {
@@ -319,20 +148,21 @@ export default {
               value: client.firstName,
               text: client.firstName
             };
-            this.clientsFirstName.push(firstNameOption);
+            this.clientsFirstNames.push(firstNameOption);
 
             let birthdayOption = {
               value: client.birthday,
               text: client.birthday
             };
-            this.clientsBirthday.push(birthdayOption);
+            this.clientsBirthdays.push(birthdayOption);
           });
         })
         .catch(error => {
           this.$log.debug(error);
           MessagesErrorsDismissMixin.addError(error);
         });
-    }
+    },
+    handleFirstRequest() {}
   },
   created() {
     this.loadChoices();

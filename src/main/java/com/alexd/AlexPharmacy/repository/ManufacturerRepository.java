@@ -3,11 +3,13 @@ package com.alexd.AlexPharmacy.repository;
 import com.alexd.AlexPharmacy.domain.Manufacturer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
-@Repository
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:4200", "http://localhost:8081"})
+@RepositoryRestResource
 public interface ManufacturerRepository extends JpaRepository<Manufacturer, Long> {
 
     /**
