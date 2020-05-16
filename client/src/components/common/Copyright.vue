@@ -7,7 +7,6 @@
   >
     Alexander Danylchenko, Databases Work 2, 2020
   </a>
-  <!--  TODO Make copyright as avatar-->
 </template>
 
 <script>

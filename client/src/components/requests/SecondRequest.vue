@@ -1,7 +1,9 @@
 <template>
   <div>
     <b-button v-b-toggle.request-2 variant="outline-success" class="w-100">
-      <span class="text-primary">2. {{ requestText }}</span>
+      <span class="text-primary" style="font-size: 1.1em">
+        2. {{ requestText }}
+      </span>
     </b-button>
     <b-collapse id="request-2" class="mt-1">
       <b-card>
