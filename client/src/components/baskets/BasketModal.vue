@@ -194,7 +194,7 @@ export default {
           response.data.forEach(drug => {
             let cityOption = {
               value: drug.id,
-              text: drug.name + " " + drug.manufacturer.trademark
+              text: drug.name + " - " + drug.manufacturer.trademark
             };
             this.availableDrugs.push(cityOption);
           });

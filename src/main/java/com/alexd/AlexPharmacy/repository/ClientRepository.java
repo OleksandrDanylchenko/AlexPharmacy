@@ -24,7 +24,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
     @Query(value = "SELECT * FROM clients WHERE clients.id IN "
             + "( SELECT baskets.client_id FROM baskets WHERE baskets.drug_id IN "
             + "( SELECT drugs.id FROM drugs WHERE drugs.manufacturer_id IN "
-            + "( SELECT manufacturer_id FROM manufacturers WHERE manufacturers.trademark = ?1 ) ) )",
+            + "( SELECT manufacturers.id FROM manufacturers WHERE manufacturers.trademark = ?1 ) ) )",
             nativeQuery = true)
     List<Client> findLastNameAndBirthdayClientWhoBoughtDrugByManufacturer(String manufacturerName);
 

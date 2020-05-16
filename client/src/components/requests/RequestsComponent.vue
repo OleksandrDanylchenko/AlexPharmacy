@@ -20,6 +20,12 @@
         <FirstRequest
           :drugsNames="drugsNames"
           @addError="addError"
+          class="fadeInLeft mb-3"
+          v-wow
+        />
+        <SecondRequest
+          :manufacturersTrademarks="manufacturersTrademarks"
+          @addError="addError"
           class="fadeInLeft"
           v-wow
         />
@@ -43,6 +49,7 @@ import DataService from "../../service/DataService";
 import { MessagesErrorsDismissMixin } from "../../mixins/MessagesErrorsDismissMixin";
 import MessagesErrorsComponent from "../common/MessagesErrorsComponent";
 import FirstRequest from "./FirstRequest";
+import SecondRequest from "./SecondRequest";
 
 export default {
   name: "RequestsComponent",
@@ -50,7 +57,8 @@ export default {
   components: {
     Sidebar,
     MessagesErrorsComponent,
-    FirstRequest
+    FirstRequest,
+    SecondRequest
   },
   data() {
     return {
@@ -94,7 +102,6 @@ export default {
 
       manufacturersResource: "manufacturers",
       manufacturersTrademarks: [],
-      chosenManufacturerTrademark: null,
 
       clientsResource: "clients",
       clientsFirstNames: [],
@@ -161,8 +168,7 @@ export default {
           this.$log.debug(error);
           MessagesErrorsDismissMixin.addError(error);
         });
-    },
-    handleFirstRequest() {}
+    }
   },
   created() {
     this.loadChoices();

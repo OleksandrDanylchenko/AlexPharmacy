@@ -16,7 +16,6 @@
             </b-input-group>
           </b-form-group>
           <b-table
-            id="clientsTable"
             hover
             :items="manufacturers"
             :fields="fields"

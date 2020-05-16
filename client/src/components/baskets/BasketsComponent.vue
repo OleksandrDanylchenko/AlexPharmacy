@@ -64,7 +64,7 @@
                 {{
                   data.item.drug
                     ? data.item.drug.name +
-                      " " +
+                      " - " +
                       data.item.drug.manufacturer.trademark
                     : "∅"
                 }}
