@@ -11,7 +11,12 @@
       </template>
 
       <template v-slot:default>
-        {{ drugData.instruction }}
+        <b-form-textarea
+          rows="27"
+          no-resize
+          plaintext
+          :value="drugData.instruction"
+        />
       </template>
     </b-modal>
   </div>

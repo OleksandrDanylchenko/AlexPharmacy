@@ -8,4 +8,7 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style lang="css">
+@import "../../styles/gradient.css";
+@import "../../styles/animate.css";
+</style>
