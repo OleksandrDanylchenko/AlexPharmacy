@@ -22,12 +22,21 @@
           @addError="addError"
           class="fadeInLeft mb-3"
           v-wow
+          data-wow-delay="0.1s"
         />
         <SecondRequest
           :manufacturersTrademarks="manufacturersTrademarks"
           @addError="addError"
-          class="fadeInLeft"
+          class="fadeInLeft mb-3"
           v-wow
+          data-wow-delay="0.2s"
+        />
+        <ThirdRequest
+          :manufacturersTrademarks="manufacturersTrademarks"
+          @addError="addError"
+          class="fadeInLeft mb-3"
+          v-wow
+          data-wow-delay="0.3s"
         />
       </div>
       <div class="w-50">
@@ -50,6 +59,7 @@ import { MessagesErrorsDismissMixin } from "../../mixins/MessagesErrorsDismissMi
 import MessagesErrorsComponent from "../common/MessagesErrorsComponent";
 import FirstRequest from "./FirstRequest";
 import SecondRequest from "./SecondRequest";
+import ThirdRequest from "./ThirdRequest";
 
 export default {
   name: "RequestsComponent",
@@ -58,20 +68,12 @@ export default {
     Sidebar,
     MessagesErrorsComponent,
     FirstRequest,
-    SecondRequest
+    SecondRequest,
+    ThirdRequest
   },
   data() {
     return {
       requests: [
-        {
-          text:
-            "Знайти прізвища та дні народження клієнтів, " +
-            "що придбали хоча б один препарат виробника з торговою маркою TM"
-        },
-        {
-          text:
-            "Знайти назви хвороб, які лікуються препаратами виробника з торговою маркою TM"
-        },
         {
           text:
             "Знайти назви препаратів, придбаних клієнтом з ім'ям clientFirstName та датою народження CB"
