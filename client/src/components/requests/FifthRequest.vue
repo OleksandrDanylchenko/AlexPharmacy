@@ -1,23 +1,23 @@
 <template>
   <div>
-    <b-button v-b-toggle.request-3 variant="outline-success" class="w-100">
-      <span class="text-primary">3. {{ requestText }}</span>
+    <b-button v-b-toggle.request-5 variant="outline-success" class="w-100">
+      <span class="text-primary">5. {{ requestText }}</span>
     </b-button>
-    <b-collapse id="request-3" class="mt-1">
+    <b-collapse id="request-5" class="mt-1">
       <b-card>
         <b-card-text>
           <b-form-group>
-            <b-input-group prepend="Оберіть TM">
+            <b-input-group prepend="Оберіть DG">
               <b-form-select
-                v-model="chosenManufacturerTrademark"
-                :options="manufacturersTrademarks"
-                @change="handleThirdRequest"
+                v-model="chosenDrugName"
+                :options="drugsNames"
+                @change="handleFifthRequest"
               />
             </b-input-group>
           </b-form-group>
           <b-table
             hover
-            :items="diseases"
+            :items="cities"
             :fields="fields"
             :busy.sync="isBusy"
             primary-key="id"
@@ -32,7 +32,7 @@
                 />
               </div>
             </template>
-            <template v-slot:cell(diseaseName)="data">
+            <template v-slot:cell(cityName)="data">
               {{ data.item.name }}
             </template>
           </b-table>
@@ -46,34 +46,34 @@
 import DataService from "../../service/DataService";
 
 export default {
-  name: "ThirdRequest",
-  props: ["manufacturersTrademarks"],
+  name: "FifthRequest",
+  props: ["drugsNames"],
   data() {
     return {
       requestText:
-        "Знайти назви хвороб, які лікуються препаратами виробника з торговою маркою TM",
+        "Знайти назви міст, виробники яких не постачають препарат з назвою DN",
       fields: [
         {
-          key: "diseaseName",
-          label: "Назва хвороби",
+          key: "cityName",
+          label: "Назва міста",
           thClass: "text-center",
           tdClass: "text-center",
           thStyle: "vertical-align: middle;"
         }
       ],
       isBusy: true,
-      chosenManufacturerTrademark: null,
-      diseases: []
+      chosenDrugName: null,
+      cities: []
     };
   },
   methods: {
-    handleThirdRequest() {
+    handleFifthRequest() {
       this.isBusy = true;
       DataService.searchRequest(
-        `diseases/search/findDiseasesByDrugsFromManufacturer?manufacturerTrademark=${this.chosenManufacturerTrademark}`
+        `cities/search/findCitiesManufacturersNotSupplyingDrug?drugName=${this.chosenDrugName}`
       )
         .then(response => {
-          this.diseases = response.data._embedded.diseases;
+          this.cities = response.data._embedded.cities;
           this.isBusy = false;
         })
         .catch(error => {

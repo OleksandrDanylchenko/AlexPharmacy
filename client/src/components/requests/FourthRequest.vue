@@ -11,14 +11,14 @@
               <b-form-select
                 v-model="chosenClientFirstName"
                 :options="clientsFirstNames"
-                @change="handleSecondRequest"
+                @change="handleFourthRequest"
               />
             </b-input-group>
             <b-input-group prepend="Оберіть день народження">
               <b-form-select
                 v-model="chosenClientBirthday"
                 :options="clientsBirthdays"
-                @change="handleSecondRequest"
+                @change="handleFourthRequest"
               />
             </b-input-group>
           </b-form-group>
@@ -75,7 +75,7 @@ export default {
     };
   },
   methods: {
-    handleSecondRequest() {
+    handleFourthRequest() {
       if (this.chosenClientFirstName && this.chosenClientBirthday) {
         this.isBusy = true;
         DataService.searchRequest(

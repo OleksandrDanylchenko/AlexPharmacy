@@ -46,6 +46,13 @@
           v-wow
           data-wow-delay="0.4s"
         />
+        <FifthRequest
+          :drugsNames="drugsNames"
+          @addError="addError"
+          class="fadeInLeft mb-3"
+          v-wow
+          data-wow-delay="0.5s"
+        />
       </div>
       <div class="w-50">
         <h1
@@ -69,6 +76,7 @@ import FirstRequest from "./FirstRequest";
 import SecondRequest from "./SecondRequest";
 import ThirdRequest from "./ThirdRequest";
 import FourthRequest from "./FourthRequest";
+import FifthRequest from "./FifthRequest";
 
 export default {
   name: "RequestsComponent",
@@ -79,19 +87,12 @@ export default {
     FirstRequest,
     SecondRequest,
     ThirdRequest,
-    FourthRequest
+    FourthRequest,
+    FifthRequest
   },
   data() {
     return {
       requests: [
-        {
-          text:
-            "Знайти назви препаратів, придбаних клієнтом з ім'ям clientFirstName та датою народження CB"
-        },
-        {
-          text:
-            "Знайти назви міст, виробники яких не постачають препарат з назвою DN"
-        },
         {
           text:
             "Знайти клієнтів, котрі придбали такі ж препарати, що й покупець, який народився CB"
