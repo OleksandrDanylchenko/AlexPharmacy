@@ -77,6 +77,12 @@
           v-wow
           data-wow-delay="0.4s"
         />
+        <EightRequest
+          @addError="addError"
+          class="fadeInLeft mb-3 mr-4"
+          v-wow
+          data-wow-delay="0.5s"
+        />
       </div>
     </div>
   </div>
@@ -94,6 +100,7 @@ import FourthRequest from "./FourthRequest";
 import FifthRequest from "./FifthRequest";
 import SixthRequest from "./SixthRequest";
 import SeventhRequest from "./SeventhRequest";
+import EightRequest from "./EightRequest";
 
 export default {
   name: "RequestsComponent",
@@ -107,21 +114,11 @@ export default {
     FourthRequest,
     FifthRequest,
     SixthRequest,
-    SeventhRequest
+    SeventhRequest,
+    EightRequest
   },
   data() {
     return {
-      requests: [
-        {
-          text:
-            "Знайти дні народження покупців з іменем CFN, які придбали " +
-            "принаймні усі продукти від виробника TM"
-        },
-        {
-          text: "Знайти назви міст виробників, які постачають усі препарати"
-        }
-      ],
-
       messages: [],
       errors: [],
 

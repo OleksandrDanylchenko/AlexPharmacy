@@ -56,6 +56,7 @@ export default {
         {
           key: "diseaseName",
           label: "Назва хвороби",
+          sortable: true,
           thClass: "text-center",
           tdClass: "text-center",
           thStyle: "vertical-align: middle;"

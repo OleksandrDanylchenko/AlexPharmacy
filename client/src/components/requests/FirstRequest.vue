@@ -56,6 +56,7 @@ export default {
         {
           key: "manufacturerTrademark",
           label: "Торгові марки",
+          sortable: true,
           thClass: "text-center",
           tdClass: "text-center",
           thStyle: "vertical-align: middle;"

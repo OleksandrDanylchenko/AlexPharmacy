@@ -1,20 +1,11 @@
 <template>
   <div>
-    <b-button v-b-toggle.request-5 variant="outline-success" class="w-100">
-      <span class="text-primary">5. {{ requestText }}</span>
+    <b-button v-b-toggle.request-8 variant="outline-success" class="w-100">
+      <span class="text-primary">8. {{ requestText }}</span>
     </b-button>
-    <b-collapse id="request-5" class="mt-1">
+    <b-collapse id="request-8" class="mt-1">
       <b-card>
         <b-card-text>
-          <b-form-group>
-            <b-input-group prepend="Оберіть DG">
-              <b-form-select
-                v-model="chosenDrugName"
-                :options="drugsNames"
-                @change="handleFifthRequest"
-              />
-            </b-input-group>
-          </b-form-group>
           <b-table
             hover
             :items="cities"
@@ -32,9 +23,6 @@
                 />
               </div>
             </template>
-            <template v-slot:cell(cityName)="data">
-              {{ data.item.name }}
-            </template>
           </b-table>
         </b-card-text>
       </b-card>
@@ -46,12 +34,10 @@
 import DataService from "../../service/DataService";
 
 export default {
-  name: "FifthRequest",
-  props: ["drugsNames"],
+  name: "SeventhRequest",
   data() {
     return {
-      requestText:
-        "Знайти назви міст, виробники яких не постачають препарат з назвою DN",
+      requestText: "Знайти назви міст виробників, які постачають усі препарати",
       fields: [
         {
           key: "cityName",
@@ -63,15 +49,14 @@ export default {
         }
       ],
       isBusy: true,
-      chosenDrugName: null,
       cities: []
     };
   },
   methods: {
-    handleFifthRequest() {
+    handleEightRequest() {
       this.isBusy = true;
       DataService.searchRequest(
-        `cities/search/findCitiesManufacturersNotSupplyingDrug?drugName=${this.chosenDrugName}`
+        `cities/search/findCitiesManufacturersSupplyAllDrugs`
       )
         .then(response => {
           this.cities = response.data._embedded.cities;
@@ -81,6 +66,9 @@ export default {
           this.$emit("addError", `${error}`);
         });
     }
+  },
+  created() {
+    this.handleEightRequest();
   }
 };
 </script>

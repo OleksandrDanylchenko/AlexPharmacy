@@ -63,6 +63,7 @@ export default {
         {
           key: "drugName",
           label: "Назва препарату",
+          sortable: true,
           thClass: "text-center",
           tdClass: "text-center",
           thStyle: "vertical-align: middle;"

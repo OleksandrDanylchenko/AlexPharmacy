@@ -60,6 +60,7 @@ export default {
         {
           key: "clientLastName",
           label: "Прізвище",
+          sortable: true,
           thClass: "text-center",
           tdClass: "text-center",
           thStyle: "vertical-align: middle;"
@@ -67,6 +68,7 @@ export default {
         {
           key: "clientBirthday",
           label: "День народження",
+          sortable: true,
           thClass: "text-center",
           tdClass: "text-center",
           thStyle: "vertical-align: middle;"
