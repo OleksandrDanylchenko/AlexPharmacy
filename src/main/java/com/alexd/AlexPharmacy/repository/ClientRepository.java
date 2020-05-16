@@ -28,6 +28,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
             nativeQuery = true)
     List<Client> findLastNameAndBirthdayClientWhoBoughtDrugByManufacturer(String manufacturerName);
 
+    // Знайти клієнтів, котрі придбали такі ж препарати, що й покупець, який народився clientBirthday
     @Query(value = "SELECT * FROM clients C WHERE C.birthday != ?1 AND "
             + "NOT EXISTS( SELECT baskets.drug_id FROM baskets WHERE baskets.client_id = C.id EXCEPT "
             + "( SELECT baskets.drug_id FROM baskets WHERE baskets.client_id IN "
@@ -38,4 +39,12 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
             nativeQuery = true)
     List<Client> findClientByBirthdayWithSameDrugBasket(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate birthday);
 
+    // Знайти дні народження покупців з іменем clientName,
+    // які придбали принаймні усі продукти від виробника manufacturerTrademark
+    @Query(value = "SELECT * FROM clients C WHERE C.first_name = ?1 "
+            + "AND NOT EXISTS( SELECT drugs.id FROM drugs WHERE drugs.manufacturer_id IN "
+            + "( SELECT manufacturers.id FROM manufacturers WHERE manufacturers.trademark = ?2 ) "
+            + "EXCEPT ( SELECT baskets.drug_id FROM baskets WHERE baskets.client_id = C.id ) )",
+            nativeQuery = true)
+    List<Client> findClientByFirstNameBoughtAllManufacturerDrugs(String firstName, String trademark);
 }

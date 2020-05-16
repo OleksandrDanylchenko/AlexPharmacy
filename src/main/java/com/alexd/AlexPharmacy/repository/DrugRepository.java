@@ -4,6 +4,7 @@ import com.alexd.AlexPharmacy.domain.Drug;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.time.LocalDate;
@@ -24,6 +25,8 @@ public interface DrugRepository extends JpaRepository<Drug, Long> {
             + "( SELECT baskets.drug_id FROM baskets WHERE baskets.client_id IN "
             + "( SELECT clients.id FROM clients WHERE clients.first_name = ?1 AND clients.birthday = ?2 ) )",
             nativeQuery = true)
-    List<Drug> findDrugBoughtByClientWithFirstNameAndBirthday(String firstName, LocalDate birthday);
+    List<Drug> findDrugBoughtByClientWithFirstNameAndBirthday(String firstName,
+                                                              @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+                                                                      LocalDate birthday);
 
 }
