@@ -36,14 +36,14 @@
               </b-form-group>
             </ValidationProvider>
 
-            <ValidationProvider rules="required|max:8000" name="інструкції">
+            <ValidationProvider rules="required" name="інструкції">
               <b-form-group slot-scope="{ valid, errors }">
                 <b-input-group prepend="Інструкція">
                   <b-form-textarea
                     v-model="formDrug.instruction"
                     :state="errors[0] ? false : valid ? true : null"
                     rows="3"
-                    max-rows="200"
+                    max-rows="25"
                   ></b-form-textarea>
                   <b-form-invalid-feedback>
                     {{ errors[0] }}
@@ -125,6 +125,7 @@ export default {
             this.formDrug.instruction = response.data.instruction;
             this.formDrug.manufacturer.id = response.data.manufacturer.id;
             this.formDrug.diseases = response.data.diseases;
+            this.formDrug.diseases.forEach(disease => delete disease.name);
           })
           .catch(error => {
             this.$log.debug(error);

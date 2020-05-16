@@ -45,19 +45,29 @@
               </template>
 
               <template v-slot:cell(clientId)="data">
-                {{ data.item.client.id }}
+                {{ data.item.client ? data.item.client.id : "∅" }}
               </template>
               <template v-slot:cell(clientName)="data">
                 {{
-                  data.item.client.firstName + " " + data.item.client.lastName
+                  data.item.client
+                    ? data.item.client.firstName +
+                      " " +
+                      data.item.client.lastName
+                    : "∅"
                 }}
               </template>
 
               <template v-slot:cell(drugId)="data">
-                {{ data.item.drug.id }}
+                {{ data.item.drug ? data.item.drug.id : "∅" }}
               </template>
               <template v-slot:cell(drugName)="data">
-                {{ data.item.drug.name }}
+                {{
+                  data.item.drug
+                    ? data.item.drug.name +
+                      " - " +
+                      data.item.drug.manufacturer.trademark
+                    : "∅"
+                }}
               </template>
 
               <template v-slot:cell(buyingTime)="data">

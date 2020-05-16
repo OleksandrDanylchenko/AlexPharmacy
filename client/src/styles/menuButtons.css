@@ -19,12 +19,3 @@
 .shiftLeft:hover {
   right: 20px;
 }
-
-.shiftUp {
-  position: relative;
-  bottom: 0;
-  transition: bottom ease 0.5s;
-}
-.shiftUp:hover {
-  bottom: 8px;
-}

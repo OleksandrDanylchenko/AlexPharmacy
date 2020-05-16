@@ -145,9 +145,9 @@ export default {
           this.isBusy = false;
         })
         .catch(error => {
-          this.$log.debug(error.response.data.errors);
+          this.$log.debug(error.response.data.message);
           this.addError(`Сталася помилка завантаження таблиці: `);
-          this.addError(error.response.data.errors);
+          this.addError(error.response.data.message);
         });
     },
     openCitiesModal(id) {
@@ -165,8 +165,8 @@ export default {
           this.refreshCities();
         })
         .catch(error => {
-          this.$log.debug(error.response.data.errors);
-          this.addError(error.response.data.errors);
+          this.$log.debug(error.response.data.message);
+          this.addError(error.response.data.message);
         });
       this.isBusy = false;
       this.$bvModal.hide("cityModal");
@@ -183,8 +183,8 @@ export default {
           this.refreshCities();
         })
         .catch(error => {
-          this.$log.debug(error.response.data.errors);
-          this.addError(error.response.data.errors);
+          this.$log.debug(error.response.data.message);
+          this.addError(error.response.data.message);
         });
       this.isBusy = false;
       this.$bvModal.hide("cityModal");

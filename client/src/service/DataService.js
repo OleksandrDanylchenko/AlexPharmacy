@@ -8,6 +8,9 @@ class DataService {
   retrieveRecord(resource, id) {
     return axios.get(store.state.apiUrl + `/${resource}/${id}`);
   }
+  searchRequest(request) {
+    return axios.get(store.state.apiUrl + `/${request}`);
+  }
   addRecord(resource, addForm) {
     return axios.post(store.state.apiUrl + `/${resource}`, addForm);
   }
