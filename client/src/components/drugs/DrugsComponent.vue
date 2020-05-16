@@ -66,7 +66,7 @@
                     <b-list-group-item
                       v-for="disease in data.item.diseases"
                       :key="disease.id"
-                      class="my-1 py-1 px-0"
+                      class="my-1 p-1"
                     >
                       <div class="d-table m-auto">Код: {{ disease.id }}</div>
                       <div class="d-table m-auto">
