@@ -36,7 +36,7 @@
               </b-form-group>
             </ValidationProvider>
 
-            <ValidationProvider rules="required|max:8000" name="інструкції">
+            <ValidationProvider rules="required" name="інструкції">
               <b-form-group slot-scope="{ valid, errors }">
                 <b-input-group prepend="Інструкція">
                   <b-form-textarea
