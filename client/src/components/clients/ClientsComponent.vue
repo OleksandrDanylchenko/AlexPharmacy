@@ -162,9 +162,9 @@ export default {
           this.isBusy = false;
         })
         .catch(error => {
-          this.$log.debug(error.response.data.errors);
+          this.$log.debug(error.response.data.message);
           this.addError(`Сталася помилка завантаження таблиці: `);
-          this.addError(error.response.data.errors);
+          this.addError(error.response.data.message);
         });
     },
     openClientModal(id) {
@@ -182,8 +182,8 @@ export default {
           this.refreshClients();
         })
         .catch(error => {
-          this.$log.debug(error.response.data.errors);
-          this.addError(error.response.data.errors);
+          this.$log.debug(error.response.data.message);
+          this.addError(error.response.data.message);
         });
       this.isBusy = false;
       this.$bvModal.hide("clientModal");
@@ -200,8 +200,8 @@ export default {
           this.refreshClients();
         })
         .catch(error => {
-          this.$log.debug(error.response.data.errors);
-          this.addError(error.response.data.errors);
+          this.$log.debug(error.response.data.message);
+          this.addError(error.response.data.message);
         });
       this.isBusy = false;
       this.$bvModal.hide("clientModal");
@@ -221,7 +221,7 @@ export default {
           this.refreshClients();
         })
         .catch(error => {
-          this.$log.debug(error.response.data.errors);
+          this.$log.debug(error.response.data.message);
           this.addError(`Видалення клієнта №${id} не виконано!`);
         });
       this.isBusy = false;
