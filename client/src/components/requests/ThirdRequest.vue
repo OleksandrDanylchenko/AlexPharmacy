@@ -73,7 +73,6 @@ export default {
         `diseases/search/findDiseasesByDrugsFromManufacturer?manufacturerTrademark=${this.chosenManufacturerTrademark}`
       )
         .then(response => {
-          console.log(response.data._embedded.diseases);
           this.diseases = response.data._embedded.diseases;
           this.isBusy = false;
         })

@@ -38,6 +38,14 @@
           v-wow
           data-wow-delay="0.3s"
         />
+        <FourthRequest
+          :clientsFirstNames="clientsFirstNames"
+          :clientsBirthdays="clientsBirthdays"
+          @addError="addError"
+          class="fadeInLeft mb-3"
+          v-wow
+          data-wow-delay="0.4s"
+        />
       </div>
       <div class="w-50">
         <h1
@@ -60,6 +68,7 @@ import MessagesErrorsComponent from "../common/MessagesErrorsComponent";
 import FirstRequest from "./FirstRequest";
 import SecondRequest from "./SecondRequest";
 import ThirdRequest from "./ThirdRequest";
+import FourthRequest from "./FourthRequest";
 
 export default {
   name: "RequestsComponent",
@@ -69,7 +78,8 @@ export default {
     MessagesErrorsComponent,
     FirstRequest,
     SecondRequest,
-    ThirdRequest
+    ThirdRequest,
+    FourthRequest
   },
   data() {
     return {
@@ -107,9 +117,7 @@ export default {
 
       clientsResource: "clients",
       clientsFirstNames: [],
-      chosenClientFirstName: null,
-      clientsBirthdays: [],
-      chosenClientBirthday: null
+      clientsBirthdays: []
     };
   },
   methods: {
@@ -161,7 +169,7 @@ export default {
 
             let birthdayOption = {
               value: client.birthday,
-              text: client.birthday
+              text: this.$moment(client.birthday).format("DD.MM.YYYY")
             };
             this.clientsBirthdays.push(birthdayOption);
           });
