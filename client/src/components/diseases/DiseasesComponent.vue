@@ -172,14 +172,17 @@ export default {
       this.isBusy = true;
       DataService.retrieveAllRecords(this.diseasesResource)
         .then(response => {
-          this.$log.debug("Diseases loaded: ", response.data);
-          this.diseases = response.data;
+          this.$log.debug(
+            "Diseases loaded: ",
+            response.data._embedded.diseases
+          );
+          this.diseases = response.data._embedded.diseases;
           this.isBusy = false;
         })
         .catch(error => {
-          this.$log.debug(error.response.data.errors);
+          this.$log.debug(error.response.data.message);
           this.addError(`Сталася помилка завантаження таблиці: `);
-          this.addError(error.response.data.errors);
+          this.addError(error.response.data.message);
         });
     },
     openDiseaseModal(id) {
@@ -197,23 +200,26 @@ export default {
           this.refreshDiseases();
         })
         .catch(error => {
-          this.$log.debug(error.response.data.errors);
-          this.addError(error.response.data.errors);
+          this.$log.debug(error.response.data.message);
+          this.addError(error.response.data.message);
         });
       this.isBusy = false;
       this.$bvModal.hide("diseaseModal");
     },
     updateDisease(updateDisease) {
       this.isBusy = true;
-      DataService.updateRecord(this.diseasesResource, updateDisease)
+      DataService.updateRecord(
+        this.diseasesResource + "/" + this.processingId,
+        updateDisease
+      )
         .then(() => {
           this.$log.debug("Update disease " + updateDisease);
           this.addMessage(`Хворобу №${updateDisease.id} змінено успішно`);
           this.refreshDiseases();
         })
         .catch(error => {
-          this.$log.debug(error.response.data.errors);
-          this.addError(error.response.data.errors);
+          this.$log.debug(error.response.data.message);
+          this.addError(error.response.data.message);
         });
       this.isBusy = false;
       this.$bvModal.hide("diseaseModal");
@@ -233,7 +239,7 @@ export default {
           this.refreshDiseases();
         })
         .catch(error => {
-          this.$log.debug(error.response.data.errors);
+          this.$log.debug(error.response.data.message);
           this.addError(`Видалення хвороби №${id} не виконано!`);
         });
       this.isBusy = false;

@@ -74,7 +74,7 @@ export default {
           })
           .catch(error => {
             this.$log.debug(error);
-            if (error.response.status !== 404) {
+            if (error.response.status === 404) {
               this.$emit("addError", `${error}`);
               this.$bvModal.hide("diseaseModal");
             }

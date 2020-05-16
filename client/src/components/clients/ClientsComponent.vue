@@ -157,7 +157,7 @@ export default {
       this.isBusy = true;
       DataService.retrieveAllRecords(this.clientsResource)
         .then(response => {
-          this.$log.debug("Clients loaded: ", response.data);
+          this.$log.debug("Clients loaded: ", response.data._embedded.clients);
           this.clients = response.data._embedded.clients;
           this.isBusy = false;
         })
