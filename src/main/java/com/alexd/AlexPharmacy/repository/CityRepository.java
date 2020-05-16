@@ -24,4 +24,12 @@ public interface CityRepository extends JpaRepository<City, Long> {
             nativeQuery = true)
     List<City> findCitiesManufacturersNotSupplyingDrug(String drugName);
 
+    //    Знайти назви міст виробників, які постачають усі препарати
+    @Query(value = "SELECT cities.name FROM cities WHERE cities.id IN "
+            + "( SELECT M.city_id FROM manufacturers M WHERE "
+            + "NOT EXISTS( (SELECT drugs.id FROM drugs WHERE drugs.manufacturer_id = M.id) EXCEPT (SELECT drugs.id FROM drugs) ) "
+            + "AND NOT EXISTS( (SELECT drugs.id FROM drugs) EXCEPT (SELECT drugs.id FROM drugs WHERE drugs.manufacturer_id = M.id) ) )",
+            nativeQuery = true)
+    List<City> findCitiesManufacturersSupplyAllDrugs();
+
 }
