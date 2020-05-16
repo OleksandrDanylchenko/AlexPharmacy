@@ -20,21 +20,21 @@
         <FirstRequest
           :drugsNames="drugsNames"
           @addError="addError"
-          class="fadeInLeft mb-3"
+          class="fadeInLeft mb-3 mr-4"
           v-wow
           data-wow-delay="0.1s"
         />
         <SecondRequest
           :manufacturersTrademarks="manufacturersTrademarks"
           @addError="addError"
-          class="fadeInLeft mb-3"
+          class="fadeInLeft mb-3 mr-4"
           v-wow
           data-wow-delay="0.2s"
         />
         <ThirdRequest
           :manufacturersTrademarks="manufacturersTrademarks"
           @addError="addError"
-          class="fadeInLeft mb-3"
+          class="fadeInLeft mb-3 mr-4"
           v-wow
           data-wow-delay="0.3s"
         />
@@ -42,14 +42,14 @@
           :clientsFirstNames="clientsFirstNames"
           :clientsBirthdays="clientsBirthdays"
           @addError="addError"
-          class="fadeInLeft mb-3"
+          class="fadeInLeft mb-3 mr-4"
           v-wow
           data-wow-delay="0.4s"
         />
         <FifthRequest
           :drugsNames="drugsNames"
           @addError="addError"
-          class="fadeInLeft mb-3"
+          class="fadeInLeft mb-3 mr-4"
           v-wow
           data-wow-delay="0.5s"
         />
@@ -62,6 +62,13 @@
         >
           Множинні запити
         </h1>
+        <SixthRequest
+          :clientsBirthdays="clientsBirthdays"
+          @addError="addError"
+          class="fadeInLeft mb-3 mr-4"
+          v-wow
+          data-wow-delay="0.3s"
+        />
       </div>
     </div>
   </div>
@@ -77,6 +84,7 @@ import SecondRequest from "./SecondRequest";
 import ThirdRequest from "./ThirdRequest";
 import FourthRequest from "./FourthRequest";
 import FifthRequest from "./FifthRequest";
+import SixthRequest from "./SixthRequest";
 
 export default {
   name: "RequestsComponent",
@@ -88,15 +96,12 @@ export default {
     SecondRequest,
     ThirdRequest,
     FourthRequest,
-    FifthRequest
+    FifthRequest,
+    SixthRequest
   },
   data() {
     return {
       requests: [
-        {
-          text:
-            "Знайти клієнтів, котрі придбали такі ж препарати, що й покупець, який народився CB"
-        },
         {
           text:
             "Знайти дні народження покупців з іменем CFN, які придбали " +
