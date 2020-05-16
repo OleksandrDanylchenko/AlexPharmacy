@@ -69,6 +69,14 @@
           v-wow
           data-wow-delay="0.3s"
         />
+        <SeventhRequest
+          :clientsFirstNames="clientsFirstNames"
+          :manufacturersTrademarks="manufacturersTrademarks"
+          @addError="addError"
+          class="fadeInLeft mb-3 mr-4"
+          v-wow
+          data-wow-delay="0.4s"
+        />
       </div>
     </div>
   </div>
@@ -85,6 +93,7 @@ import ThirdRequest from "./ThirdRequest";
 import FourthRequest from "./FourthRequest";
 import FifthRequest from "./FifthRequest";
 import SixthRequest from "./SixthRequest";
+import SeventhRequest from "./SeventhRequest";
 
 export default {
   name: "RequestsComponent",
@@ -97,7 +106,8 @@ export default {
     ThirdRequest,
     FourthRequest,
     FifthRequest,
-    SixthRequest
+    SixthRequest,
+    SeventhRequest
   },
   data() {
     return {
