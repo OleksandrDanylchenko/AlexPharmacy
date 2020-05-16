@@ -45,7 +45,7 @@ const router = new Router({
     {
       path: "/requests",
       name: "Requests",
-      component: () => import("./components/requests/SimpleRequestsComponent")
+      component: () => import("./components/requests/RequestsComponent")
     }
   ]
 });
