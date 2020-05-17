@@ -14,7 +14,7 @@
 
 - Back-end: **Java 14 + Spring Boot 2.3.0.RC1**<br/>(_MVC, Data JPA, Rest Repository,Bean Validation_)
 - Front-end: **Vue.js 4.3.1**<br/>(_Axios, Vue Router, Vuex, Babel, VueJsLogger, VueMoment, Bootstrap-Vue, VeeValidate, vWow_)
-- СКБД: **Microsoft SQL Server**
+- СКБД: **Microsoft SQL Server 2019**
 - Додаткові бібліотеки: _Jetbrains Annotations, Apache Commons Lang3, Lombok, Spring Boot Devtools_
 
 ---
