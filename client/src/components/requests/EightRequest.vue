@@ -36,13 +36,13 @@
 import DataService from "../../service/DataService";
 
 export default {
-  name: "SeventhRequest",
+  name: "EightRequest",
   data() {
     return {
       requestText: "Знайти назви міст виробників, які постачають усі препарати",
       fields: [
         {
-          key: "cityName",
+          key: "name",
           label: "Назва міста",
           sortable: true,
           thClass: "text-center",
