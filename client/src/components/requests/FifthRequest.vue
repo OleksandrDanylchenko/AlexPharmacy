@@ -9,7 +9,7 @@
       <b-card>
         <b-card-text>
           <b-form-group>
-            <b-input-group prepend="Оберіть DG">
+            <b-input-group prepend="Оберіть DN">
               <b-form-select
                 v-model="chosenDrugName"
                 :options="drugsNames"
