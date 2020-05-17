@@ -13,7 +13,7 @@
 
     <div class="d-flex">
       <div class="w-50">
-        <h1 class="display-4 text-center mb-3 text-primary fadeInLeft" v-wow>
+        <h1 class="display-4 mb-3 text-center text-danger fadeInLeft" v-wow>
           Прості запити
         </h1>
 
@@ -56,7 +56,7 @@
       </div>
       <div class="w-50">
         <h1
-          class="display-4 text-center mb-3 text-primary fadeInLeft"
+          class="display-4  mb-3 text-center text-danger fadeInLeft"
           v-wow
           data-wow-delay="0.2s"
         >

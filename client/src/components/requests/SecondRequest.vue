@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-button v-b-toggle.request-2 variant="outline-success" class="w-100">
-      <span class="text-primary" style="font-size: 1.1em">
+    <b-button v-b-toggle.request-2 variant="outline-danger" class="w-100">
+      <span class="text-primary" style="font-size: 1.3em">
         2. {{ requestText }}
       </span>
     </b-button>
