@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-button v-b-toggle.request-1 variant="outline-success" class="w-100">
-      <span class="text-primary" style="font-size: 1.1em">
+    <b-button v-b-toggle.request-1 variant="outline-danger" class="w-100">
+      <span class="text-primary" style="font-size: 1.3em">
         1. {{ requestText }}
       </span>
     </b-button>
@@ -9,7 +9,7 @@
       <b-card>
         <b-card-text>
           <b-form-group>
-            <b-input-group prepend="Оберіть DG">
+            <b-input-group prepend="Оберіть DN">
               <b-form-select
                 v-model="chosenDrugName"
                 :options="drugsNames"

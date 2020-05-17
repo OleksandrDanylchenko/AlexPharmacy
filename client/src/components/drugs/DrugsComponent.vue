@@ -59,8 +59,9 @@
                   size="sm"
                   variant="outline-info"
                   v-b-toggle="'diseases' + data.item.id"
-                  >Відкрити список</b-button
                 >
+                  Відкрити список
+                </b-button>
                 <b-collapse :id="'diseases' + data.item.id" class="mt-2">
                   <b-list-group>
                     <b-list-group-item

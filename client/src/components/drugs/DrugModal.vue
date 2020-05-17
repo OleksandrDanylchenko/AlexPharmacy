@@ -157,9 +157,11 @@ export default {
         });
       DataService.retrieveAllRecords(this.diseasesResource)
         .then(response => {
-          this.$log.debug("Loaded available diseases: " + response.data);
+          this.$log.debug(
+            "Loaded available diseases: " + response.data._embedded.diseases
+          );
 
-          response.data.forEach(disease => {
+          response.data._embedded.diseases.forEach(disease => {
             let diseaseOption = {
               value: { id: disease.id },
               text: disease.name
