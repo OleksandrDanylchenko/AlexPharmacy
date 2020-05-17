@@ -52,8 +52,9 @@
                   size="sm"
                   variant="outline-dark"
                   v-b-toggle="'drugs' + data.item.id"
-                  >Відкрити список</b-button
                 >
+                  Відкрити список
+                </b-button>
                 <b-collapse :id="'drugs' + data.item.id" class="mt-2">
                   <b-list-group>
                     <b-list-group-item
@@ -176,7 +177,18 @@ export default {
             "Diseases loaded: ",
             response.data._embedded.diseases
           );
-          this.diseases = response.data._embedded.diseases;
+          response.data._embedded.diseases.forEach(disease => {
+            DataService.searchRequest(`diseases/${disease.id}/drugs`).then(
+              drugsData => {
+                let diseaseRecord = {
+                  id: disease.id,
+                  name: disease.name,
+                  drugs: drugsData.data._embedded.drugs
+                };
+                this.diseases.push(diseaseRecord);
+              }
+            );
+          });
           this.isBusy = false;
         })
         .catch(error => {
