@@ -71,7 +71,7 @@
               </template>
 
               <template v-slot:cell(buyingTime)="data">
-                {{ data.item.buyingTime | moment("DD.MM.YYYY hh:mm") }}
+                {{ data.item.buyingTime | moment("DD.MM.YYYY HH:MM") }}
               </template>
 
               <template v-slot:cell(editModal)="data">
