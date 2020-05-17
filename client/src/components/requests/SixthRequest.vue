@@ -26,7 +26,7 @@
             class="m-0"
           >
             <template v-slot:table-busy>
-              <div class="text-center text-success mt-1">
+              <div class="text-center text-danger mt-1">
                 <b-spinner
                   type="grow"
                   class="align-middle"
