@@ -72,7 +72,7 @@ export default {
           thStyle: "vertical-align: middle;"
         },
         {
-          key: "secondName",
+          key: "lastName",
           label: "Прізвище",
           sortable: true,
           thClass: "text-center",
